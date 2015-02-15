@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"
+<html lang="pt-br"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
@@ -32,27 +32,6 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-</h:head>
-
-<body>
-
-    <div id="wrapper">
-
-        <!-- Navigation -->
-        <ui:include src="WEB-INF/common/modules/topo.xhtml" />
-
-        <!-- Page Content -->
-        <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">Blank</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- jQuery -->
     <script src="/sgo/javax.faces.resource/jquery/dist/jquery.min.js.xhtml?ln=bower_components"></script>
 
@@ -64,6 +43,27 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="/sgo/javax.faces.resource/js/sb-admin-2.js.xhtml?ln=dist"></script>
+</h:head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <ui:include src="/WEB-INF/common/modules/topo.xhtml" />
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                    	<ui:insert name="conteudo" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 </body>
 
