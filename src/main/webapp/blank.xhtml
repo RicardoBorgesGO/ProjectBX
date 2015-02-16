@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 	<ui:composition template="/WEB-INF/common/template.xhtml">
@@ -9,6 +10,10 @@
 			<link href="resources/css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
 		
 			<h1>Agendamento</h1>
+			
+			<h:form prependId="false">
+				<h:commandButton value="Criar evento" action="#{eventoMB.adicionarEvento}" />
+			</h:form>
 			
 			<div id="calendar"></div>
 			
@@ -19,19 +24,25 @@
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
 			        <h4 class="modal-title">Adicionar um evento</h4>
 			      </div>
-			      <div class="modal-body">
-			        <p>One fine body...</p>
-			        
-			        <div class="form-group">
-						<label for="evento">Evento</label>
-						<h:inputText class="form-control" id="evento" placeholder="Nome do evento" />
-					</div>
-			        
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			        <button type="button" class="btn btn-primary">Save changes</button>
-			      </div>
+		      	<h:form prependId="false">
+				      <div class="modal-body">
+					        <p>One fine body...</p>
+					        
+					        <div class="form-group">
+								<label for="evento">Evento</label>
+								<h:inputText class="form-control" id="evento" placeholder="Nome do evento" value="#{eventoMB.evento.nomeDoEvento}" />
+								
+								<h:inputHidden id="dataDoEvento" value="#{eventoMB.evento.dataDoEvento}">
+									<f:convertDateTime pattern="yyyy-MM-dd" />
+								</h:inputHidden>
+							</div>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				        <button type="button" class="btn btn-primary">Save changes</button>
+				        <h:commandButton value="Criar evento" action="#{eventoMB.adicionarEvento}" />
+				      </div>
+		        </h:form>
 			    </div><!-- /.modal-content -->
 			  </div><!-- /.modal-dialog -->
 			</div><!-- /.modal -->
@@ -45,6 +56,8 @@
 		
 			    $('#calendar').fullCalendar({
 			    	dayClick: function(date, jsEvent, view) {
+			    		
+			    		$('#dataDoEvento').val(date.format());
 
 // 			            alert('Clicked on: ' + date.format());
 
