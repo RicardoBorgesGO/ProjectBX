@@ -11,10 +11,6 @@
 		
 			<h1>Agendamento</h1>
 			
-			<h:form prependId="false">
-				<h:commandButton value="Criar evento" action="#{eventoMB.adicionarEvento}" />
-			</h:form>
-			
 			<div id="calendar"></div>
 			
 			<div class="modal fade" id="myModal">
@@ -24,25 +20,25 @@
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
 			        <h4 class="modal-title">Adicionar um evento</h4>
 			      </div>
-		      	<h:form prependId="false">
-				      <div class="modal-body">
-					        <p>One fine body...</p>
-					        
-					        <div class="form-group">
-								<label for="evento">Evento</label>
-								<h:inputText class="form-control" id="evento" placeholder="Nome do evento" value="#{eventoMB.evento.nomeDoEvento}" />
-								
-								<h:inputHidden id="dataDoEvento" value="#{eventoMB.evento.dataDoEvento}">
-									<f:convertDateTime pattern="yyyy-MM-dd" />
-								</h:inputHidden>
-							</div>
-				      </div>
-				      <div class="modal-footer">
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				        <button type="button" class="btn btn-primary">Save changes</button>
-				        <h:commandButton value="Criar evento" action="#{eventoMB.adicionarEvento}" />
-				      </div>
-		        </h:form>
+			      	<h:form prependId="false">
+					      <div class="modal-body">
+						        <p>One fine body...</p>
+						        
+						        <div class="form-group">
+									<label for="evento">Evento</label>
+									<h:inputText class="form-control" id="evento" placeholder="Nome do evento" value="#{eventoMB.evento.nomeDoEvento}" />
+									
+									<h:inputHidden id="dataDoEvento" value="#{eventoMB.evento.dataDoEvento}">
+										<f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="GMT-03:00" />
+									</h:inputHidden>
+								</div>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					        <button type="button" class="btn btn-primary">Save changes</button>
+					        <h:commandButton value="Criar evento" action="#{eventoMB.adicionarEvento}" />
+					      </div>
+			        </h:form>
 			    </div><!-- /.modal-content -->
 			  </div><!-- /.modal-dialog -->
 			</div><!-- /.modal -->
@@ -53,25 +49,33 @@
 		    
 			<script type="text/javascript">
 			$(document).ready(function() {
+				var eventsData = '[';
+				var eventos;
+				
+				$.getJSON("http://localhost:8080/spring-jpa/rest/evento/getEventos", function(result) {
+		            $.each(result, function(i, field){
+		            	eventos = {title: field.nomeDoEvento, model: moment(field.dataDoEvento).format("YYYY-MM-DD")};
+		            	eventsData += '{ title: \'' + field.nomeDoEvento + '\', start: \'' + moment(field.dataDoEvento).format("YYYY-MM-DD") + '\'}';
+		            });
+		            eventsData += ']';
+				
+				//TODO Terminar
+				
+	            	alert(eventos.title);
+				    $('#calendar').fullCalendar({
+				    	dayClick: function(date, jsEvent, view) {
+				    		$('#dataDoEvento').val(moment(date).format("DD/MM/YYYY HH:mm"));
+				    		alert(moment(date).format("DD/MM/YYYY HH:mm"));
+				            
+				            $('#myModal').modal('show');
+	
+				            // change the day's background color just for fun
+				            $(this).css('background-color', 'red');
+				        },
+				        events: [{title: 'carnaval', start: '2015-02-01'}]
+				    })
+		        });
 		
-			    $('#calendar').fullCalendar({
-			    	dayClick: function(date, jsEvent, view) {
-			    		
-			    		$('#dataDoEvento').val(date.format());
-
-// 			            alert('Clicked on: ' + date.format());
-
-// 			            alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-
-// 			            alert('Current view: ' + view.name);
-			            
-			            $('#myModal').modal('show');
-
-			            // change the day's background color just for fun
-			            $(this).css('background-color', 'red');
-
-			        }
-			    })
 		
 			});
 			</script>
