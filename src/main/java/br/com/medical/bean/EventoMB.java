@@ -1,8 +1,6 @@
 package br.com.medical.bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -23,14 +21,9 @@ public class EventoMB implements Serializable {
 	
 	private Evento evento;
 	
-	@SuppressWarnings("rawtypes")
-	private List<? extends ArrayList> eventos;
-
 	@PostConstruct
 	public void init() {
 		evento = new Evento();
-		//TODO substituir, e pegar os elementos por Jquery
-//		eventos = UtilJson.getAllObjectJson("http://localhost:8080/spring-jpa/rest/evento/getEventos", new ArrayList<Evento>().getClass());
 	}
 
 	public String adicionarEvento() {
@@ -39,6 +32,15 @@ public class EventoMB implements Serializable {
 		//TODO Colocar url em um arquivo ou classe de configuracao
 		UtilJson.postJson("http://localhost:8080/spring-jpa/rest/evento/setEvento", eventJson);
 
+		return "";
+	}
+	
+	public String removeEvento() {
+		String eventJson = UtilConverter.objectToJson(evento);
+		
+		//TODO Colocar url em um arquivo ou classe de configuracao
+		UtilJson.postJson("http://localhost:8080/spring-jpa/rest/evento/deleteEvento", eventJson);
+		
 		return "";
 	}
 
