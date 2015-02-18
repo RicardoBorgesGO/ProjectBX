@@ -43,7 +43,7 @@ public class EventoMB implements Serializable {
 		
 		return "";
 	}
-
+	
 	public Evento getEvento() {
 		return evento;
 	}
