@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+
+<ui:composition template="/WEB-INF/common/template.xhtml">
+	<ui:define name="conteudo">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	
+		<h1>Cadastro de paciente</h1>
+
+		<div class="form-group">
+			<label for="nome">Nome</label>
+			<h:inputText id="nome" styleClass="form-control" p:placeholder="Nome do paciente" />
+		</div>
+		
+		<div class="form-group">
+			<label for="dataNascimento">Data de nascimento</label> 
+			<h:inputText id="dataNascimento" styleClass="form-control"  />
+		</div>
+		
+		<div class="form-group">
+			<label>Sexo</label>
+			<h:selectOneMenu>
+				<f:selectItem itemLabel="-- Selecione --" />
+				<f:selectItems itemLabel="#{sexo.descricao}" itemValue="#{sexo}" value="#{pacienteMB.sexos}" var="sexo" />
+			</h:selectOneMenu>
+		</div>
+		
+		<div class="form-group">
+			<label>Estado Civil</label>
+			<h:selectOneMenu>
+				<f:selectItem itemLabel="-- Selecione --" />
+				<f:selectItems itemLabel="#{estadoCivil.descricao}" itemValue="#{estadoCivil}" value="#{pacienteMB.estadosCivis}" var="estadoCivil" />
+			</h:selectOneMenu>
+		</div>
+		
+		<div class="form-group">
+			<label for="exampleInputEmail1">Dentista</label> <input
+				type="email" class="form-control" id="exampleInputEmail1"
+				placeholder="Enter email" />
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">CEP</label> <input
+				type="password" class="form-control" id="exampleInputPassword1"
+				placeholder="Password" />
+		</div>
+		
+		<div class="form-group">
+			<label for="exampleInputEmail1">Endereço</label> <input
+				type="email" class="form-control" id="exampleInputEmail1"
+				placeholder="Enter email" />
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">Bairro</label> <input
+				type="password" class="form-control" id="exampleInputPassword1"
+				placeholder="Password" />
+		</div>
+		
+		<div class="form-group">
+			<label for="exampleInputEmail1">Cidade</label> <input
+				type="email" class="form-control" id="exampleInputEmail1"
+				placeholder="Enter email" />
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">Estado</label> <input
+				type="password" class="form-control" id="exampleInputPassword1"
+				placeholder="Password" />
+		</div>
+		
+		
+		<div class="form-group">
+			<label for="exampleInputFile">File input</label> <input type="file"
+				id="exampleInputFile" />
+			<p class="help-block">Example block-level help text here.</p>
+		</div>
+		<div class="checkbox">
+			<label> <input type="checkbox" /> Check me out </label>
+		</div>
+
+	</ui:define>
+</ui:composition>
+
+</html>
