@@ -12,6 +12,8 @@ import br.com.commons.constant.EnumTipoTelefone;
 
 import com.upschool.entity.Dentista;
 import com.upschool.entity.Telefone;
+import com.upschool.util.UtilConverter;
+import com.upschool.util.UtilJson;
 
 @ViewScoped
 @ManagedBean
@@ -79,10 +81,14 @@ public class DentistaMB implements Serializable {
 
 	public String salvar() {
 		if (telefoneCelular.getNumeroDoTelefone() != null && !telefoneCelular.getNumeroDoTelefone().isEmpty()) dentista.adicionaTelefone(telefoneCelular);
-		if (telefoneComercial.getNumeroDoTelefone() != null && telefoneComercial.getNumeroDoTelefone().isEmpty()) dentista.adicionaTelefone(telefoneComercial);
-		if (telefoneResidencial.getNumeroDoTelefone() != null && telefoneResidencial.getNumeroDoTelefone().isEmpty()) dentista.adicionaTelefone(telefoneResidencial);
+		if (telefoneComercial.getNumeroDoTelefone() != null && !telefoneComercial.getNumeroDoTelefone().isEmpty()) dentista.adicionaTelefone(telefoneComercial);
+		if (telefoneResidencial.getNumeroDoTelefone() != null && !telefoneResidencial.getNumeroDoTelefone().isEmpty()) dentista.adicionaTelefone(telefoneResidencial);
 		
-		System.out.println(dentista);
+		String dentistaJson = UtilConverter.objectToJson(dentista);
+		
+		//TODO Colocar url em um arquivo ou classe de configuracao
+		UtilJson.postJson("http://localhost:8080/spring-jpa/rest/dentista/setDentista", dentistaJson);
+		
 		return "";
 	}
 
