@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<ui:composition template="/WEB-INF/common/template.xhtml">
+	<ui:define name="conteudo">
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+		<h:outputScript library="js" name="jquery.maskedinput.min.js" />
+
+		<h1>Bem vindo à Clínica Odontológica</h1>
+
+		<h:form prependId="false" styleClass="form-horizontal">
+			<div class="form-group">
+				<label for="login" class="col-sm-2 control-label">Login</label>
+				<div class="col-sm-5">
+					<h:inputText required="true" id="login" styleClass="form-control"
+						p:placeholder="Login" value="#{loginMB.usuario.login}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="senha" class="col-sm-2 control-label">Senha</label>
+				<div class="col-sm-5">
+					<h:inputSecret required="true" id="senha" styleClass="form-control"
+						p:placeholder="Senha" value="#{loginMB.usuario.senha}" />
+				</div>
+			</div>
+
+			<h:commandButton value="Entrar" action="#{loginMB.logar}"
+				styleClass="btn btn-success" />
+
+			<h:commandButton value="Cancelar" styleClass="btn btn-danger" />
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>
