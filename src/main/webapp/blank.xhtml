@@ -41,11 +41,13 @@
 										<h:outputText id="labelDataFinalDoEvento" value="#{eventoMB.evento.dataFinal}" />
 									</div>
 									<h:inputHidden id="dataDoEvento" value="#{eventoMB.evento.dataDoEvento}">
-										<f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="GMT-02:00" />
+<!-- 										<f:converter converterId="br.com.medical.converter.DateConverter" /> -->
+										<f:convertDateTime pattern="yyyy/MM/dd HH:mm" timeZone="GMT-02:00" />
 									</h:inputHidden>
 									
 									<h:inputHidden id="dataFinalDoEvento" value="#{eventoMB.evento.dataFinal}">
-										<f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="GMT-02:00" />
+<!-- 										<f:converter converterId="br.com.medical.converter.DateConverter" /> -->
+										<f:convertDateTime pattern="yyyy/MM/dd HH:mm" timeZone="GMT-02:00" />
 									</h:inputHidden>
 									
 								</div>
@@ -98,8 +100,9 @@
 			    	editable: true,
 			    	selectable: true,
 			    	select: function(start, end) {
-			    		var dataInicial = moment(start).format("DD/MM/YYYY HH:mm");
-			    		var dataFinal = moment(end).format("DD/MM/YYYY HH:mm");
+// 			    		alert(moment(start).format("YYYY/MM/DD HH:mm"));
+			    		var dataInicial = moment(start).format("YYYY/MM/DD hh:mm");
+			    		var dataFinal = moment(end).format("YYYY/MM/DD hh:mm");
 			    		
 			    		$('#dataDoEvento').val(dataInicial);
 			    		$('#dataFinalDoEvento').val(dataFinal);

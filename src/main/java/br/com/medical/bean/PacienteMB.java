@@ -1,16 +1,18 @@
 package br.com.medical.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import com.upschool.entity.Dentista;
-import com.upschool.util.UtilJson;
-
 import br.com.commons.constant.EnumEstadoCivil;
 import br.com.commons.constant.EnumSexo;
+
+import com.google.gson.reflect.TypeToken;
+import com.upschool.entity.Dentista;
+import com.upschool.util.UtilJson;
 
 @ManagedBean
 @ViewScoped
@@ -43,7 +45,7 @@ public class PacienteMB implements Serializable {
 
 	public List<Dentista> getDentistas() {
 		if (dentistas == null)
-			dentistas = UtilJson.getAllObjectJson("http://localhost:8080/spring-jpa/rest/dentista/getDentistas", Dentista.class);
+			dentistas = UtilJson.getAllObjectJson("http://localhost:8080/spring-jpa/rest/dentista/getDentistas", new TypeToken<ArrayList<Dentista>>() {}.getType());
 		return dentistas;
 	}
 
