@@ -10,67 +10,90 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	
 		<h1>Cadastro de paciente</h1>
-
-		<div class="form-group">
-			<label for="nome">Nome</label>
-			<h:inputText id="nome" styleClass="form-control" p:placeholder="Nome do paciente" />
-		</div>
 		
-		<div class="form-group">
-			<label for="dataNascimento">Data de nascimento</label> 
-			<h:inputText id="dataNascimento" styleClass="form-control"  />
-		</div>
+		<h:form prependId="false" styleClass="form-horizontal">
 		
-		<div class="form-group">
-			<label>Sexo</label>
-			<h:selectOneMenu>
-				<f:selectItem itemLabel="-- Selecione --" />
-				<f:selectItems itemLabel="#{sexo.descricao}" itemValue="#{sexo}" value="#{pacienteMB.sexos}" var="sexo" />
-			</h:selectOneMenu>
-		</div>
-		
-		<div class="form-group">
-			<label>Estado Civil</label>
-			<h:selectOneMenu>
-				<f:selectItem itemLabel="-- Selecione --" />
-				<f:selectItems itemLabel="#{estadoCivil.descricao}" itemValue="#{estadoCivil}" value="#{pacienteMB.estadosCivis}" var="estadoCivil" />
-			</h:selectOneMenu>
-		</div>
-		
-		<div class="form-group">
-			<label for="exampleInputEmail1">Dentista</label>
-			<h:selectOneMenu>
-				<f:selectItem itemLabel="-- Selecione --" />
-				<f:selectItems itemLabel="#{dentista.nome}" itemValue="#{dentista}" value="#{pacienteMB.dentistas}" var="dentista" />
-			</h:selectOneMenu>
-		</div>
-		<div class="form-group">
-			<label for="exampleInputPassword1">CEP</label> <input
-				type="password" class="form-control" id="exampleInputPassword1"
-				placeholder="Password" />
-		</div>
-		
-		<div class="form-group">
-			<label for="exampleInputEmail1">Endereço</label> <input
-				type="email" class="form-control" id="exampleInputEmail1"
-				placeholder="Enter email" />
-		</div>
-		<div class="form-group">
-			<label for="exampleInputPassword1">Bairro</label> <input
-				type="password" class="form-control" id="exampleInputPassword1"
-				placeholder="Password" />
-		</div>
-		
-		<div class="form-group">
-			<label for="exampleInputEmail1">Cidade</label> <input
-				type="email" class="form-control" id="exampleInputEmail1"
-				placeholder="Enter email" />
-		</div>
-		<div class="form-group">
-			<label for="exampleInputPassword1">Estado</label> <input
-				type="password" class="form-control" id="exampleInputPassword1"
-				placeholder="Password" />
-		</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="nome">Nome</label>
+				<div class="col-sm-6">
+					<h:inputText id="nome" styleClass="form-control" p:placeholder="Nome do paciente" />
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="dataNascimento">Data de nascimento</label>
+				<div class="col-sm-2">
+					<h:inputText id="dataNascimento" styleClass="form-control" p:placeholder="__/__/____" >
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:inputText>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Sexo</label>
+				<div class="col-sm-2">
+					<h:selectOneMenu>
+						<f:selectItem itemLabel="-- Selecione --" />
+						<f:selectItems itemLabel="#{sexo.descricao}" itemValue="#{sexo}" value="#{pacienteMB.sexos}" var="sexo" />
+					</h:selectOneMenu>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Estado Civil</label>
+				<div class="col-sm-2">
+					<h:selectOneMenu>
+						<f:selectItem itemLabel="-- Selecione --" />
+						<f:selectItems itemLabel="#{estadoCivil.descricao}" itemValue="#{estadoCivil}" value="#{pacienteMB.estadosCivis}" var="estadoCivil" />
+					</h:selectOneMenu>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="exampleInputEmail1">Dentista</label>
+				<div class="col-sm-2">
+					<h:selectOneMenu>
+						<f:selectItem itemLabel="-- Selecione --" />
+						<f:selectItems itemLabel="#{dentista.nome}" itemValue="#{dentista}" value="#{pacienteMB.dentistas}" var="dentista" />
+					</h:selectOneMenu>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="cep">CEP</label> 
+				<div class="col-sm-2">
+					<h:inputText id="cep" styleClass="form-control" p:placeholder="_____-__" />
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="endereco" class="col-sm-2 control-label">Endereço</label>
+				<div class="col-sm-4">
+					<h:inputText id="endereco" styleClass="form-control" value="#{dentistaMB.dentista.endereco.endereco}" p:placeholder="Rua A" />
+				</div>
+				
+				
+				<label for="bairro" class="col-sm-1 control-label">Bairro</label>
+				<div class="col-sm-3">
+					<h:inputText id="bairro" styleClass="form-control" value="#{dentistaMB.dentista.endereco.bairro}" p:placeholder="Bairro central" />
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="cidade" class="col-sm-2 control-label">Cidade</label>
+				<div class="col-sm-3">
+					<h:inputText id="cidade" styleClass="form-control" value="#{dentistaMB.dentista.endereco.cidade}" p:placeholder="Goiânia" />
+				</div>
+				
+				<label for="estado" class="col-sm-1 control-label">Estado</label>
+				<div class="col-sm-3">
+					<h:inputText id="estado" styleClass="form-control" value="#{dentistaMB.dentista.endereco.estado}" p:placeholder="Goiás" />
+				</div>
+			</div>
+			
+			<h:commandButton styleClass="btn btn-primary" value="Salvar" />
+			<h:commandButton styleClass="btn btn-danger" value="Cancelar" />
+		</h:form>
 		
 	</ui:define>
 </ui:composition>
