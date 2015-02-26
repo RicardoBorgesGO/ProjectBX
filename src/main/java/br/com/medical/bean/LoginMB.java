@@ -3,10 +3,13 @@ package br.com.medical.bean;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import com.upschool.entity.Usuario;
+import com.upschool.util.MensagemRespostaServico;
 import com.upschool.util.UtilConverter;
 import com.upschool.util.UtilJson;
 
@@ -26,15 +29,12 @@ public class LoginMB implements Serializable {
 	public String logar() {
 		String usuarioJson = UtilConverter.objectToJson(getUsuario());
 
-		try {
-			// TODO Colocar url em um arquivo ou classe de configuracao
-			UtilJson.postJson(
-					"http://localhost:8080/spring-jpa/rest/usuario/realizarLogin",
-					usuarioJson);
-		} catch (final Exception e) {
-			// TODO pegar a exception
-		}
-
+		// TODO Colocar url em um arquivo ou classe de configuracao
+		MensagemRespostaServico resposta = UtilJson.postJson(
+				"http://localhost:8080/spring-jpa/rest/usuario/realizarLogin",
+				usuarioJson);
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(resposta.getMensagem()));
 		return "blank.xhtml";
 	}
 
