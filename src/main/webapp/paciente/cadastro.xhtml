@@ -4,15 +4,16 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 
-
 <ui:composition template="/WEB-INF/common/template.xhtml">
-	<ui:define name="conteudo">
-	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	
-		<h1>Cadastro de paciente</h1>
+	<ui:param name="titulo_pagina" value="Cadastro de paciente" />
+	<ui:param name="subtitulo_pagina" value="Pequena descrição da funcionalidade" />
+	
+	<ui:define name="conteudo">
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<h:outputScript library="js" name="jquery.maskedinput.min.js" />
 		
 		<h:form prependId="false" styleClass="form-horizontal">
-		
 			<div class="form-group">
 				<label class="col-sm-2 control-label" for="nome">Nome</label>
 				<div class="col-sm-6">
@@ -26,6 +27,20 @@
 					<h:inputText id="dataNascimento" styleClass="form-control" p:placeholder="__/__/____" >
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:inputText>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="email" class="col-sm-2 control-label">Email</label>
+				<div class="col-sm-4">
+					<h:inputText required="true" id="email" styleClass="form-control" value="#{dentistaMB.dentista.email}" p:placeholder="Email" />
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="telefone" class="col-sm-2 control-label">Telefone:</label>
+				<div class="col-sm-2">
+					<h:inputText id="telefone" styleClass="form-control" p:placeholder="(__) ____-____" />
 				</div>
 			</div>
 			
@@ -94,6 +109,15 @@
 			<h:commandButton styleClass="btn btn-primary" value="Salvar" />
 			<h:commandButton styleClass="btn btn-danger" value="Cancelar" />
 		</h:form>
+		
+		<script>
+			$("#dataNascimento").mask("99/99/9999");
+			$("#telefoneResidencial").mask("(99) 9999-9999");
+			$("#telefoneComercial").mask("(99) 9999-9999");
+			$("#telefoneCelular").mask("(99) 9999-9999");
+			
+			$("#cep").mask("99999-999");
+		</script>
 		
 	</ui:define>
 </ui:composition>

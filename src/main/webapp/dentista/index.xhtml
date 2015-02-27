@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<ui:composition template="/WEB-INF/common/template.xhtml">
+	
+	<ui:param name="titulo_pagina" value="Colaboradores" />
+	<ui:param name="subtitulo_pagina" value="Pequena descrição da funcionalidade" />
+
+
+	<ui:define name="conteudo">
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		
+		<h:form>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Especialidade</th>
+						<th>Registro no conselho</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+				<ui:repeat var="dentista" value="#{dentistaMB.dentistas}">
+					<tr>
+						<td>#{dentista.nome}</td>
+						<td>#{dentista.especialidade}</td>
+						<td>#{dentista.registroNoCadastroRegionalOdontologico}</td>
+						<td>
+							<h:commandLink styleClass="icon-list" action="#{dentistaMB.atualizar}">
+								<f:setPropertyActionListener target="#{dentistaMB.dentista}" value="#{dentista}" />
+								<i class="fa fa-pencil"></i>
+							</h:commandLink>
+							<h:commandLink styleClass="icon-list" action="#{dentistaMB.excluir}">
+								<f:setPropertyActionListener target="#{dentistaMB.dentista}" value="#{dentista}" />
+								<i class="fa fa-times fa fa-white"></i>
+							</h:commandLink>
+						</td>
+					</tr>
+				</ui:repeat>
+				</tbody>
+			</table>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

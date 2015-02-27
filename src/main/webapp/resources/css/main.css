@@ -1,0 +1,33 @@
+@CHARSET "UTF-8";
+
+#conteudo {
+	margin-top: 35px;
+}
+
+/* Reescrita Bootstrap */
+
+.navbar-default {
+	background: #FFF;
+}
+
+.sidebar ul li a.active {
+	background-color: #4db1e2;
+    color: #fff;
+}
+
+.nav > li > a:FOCUS, .nav > li > a:HOVER {
+	background: #008FD5;
+	color: #FFF;
+}
+
+a {
+	color: #7c899c;
+}
+
+.sidebar ul li {
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.icon-list {
+	padding: 1px 5px;
+}

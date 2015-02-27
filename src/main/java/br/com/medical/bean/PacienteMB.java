@@ -24,7 +24,7 @@ public class PacienteMB implements Serializable {
 	private static final long serialVersionUID = 3008717343099503499L;
 
 	private List<Dentista> dentistas;
-
+	
 	/**
 	 * Retorna todos os sexos
 	 * 
