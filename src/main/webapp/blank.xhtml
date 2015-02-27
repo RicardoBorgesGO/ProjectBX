@@ -41,12 +41,10 @@
 										<h:outputText id="labelDataFinalDoEvento" value="#{eventoMB.evento.dataFinal}" />
 									</div>
 									<h:inputHidden id="dataDoEvento" value="#{eventoMB.evento.dataDoEvento}">
-<!-- 										<f:converter converterId="br.com.medical.converter.DateConverter" /> -->
 										<f:convertDateTime pattern="yyyy/MM/dd HH:mm" timeZone="GMT-02:00" />
 									</h:inputHidden>
 									
 									<h:inputHidden id="dataFinalDoEvento" value="#{eventoMB.evento.dataFinal}">
-<!-- 										<f:converter converterId="br.com.medical.converter.DateConverter" /> -->
 										<f:convertDateTime pattern="yyyy/MM/dd HH:mm" timeZone="GMT-02:00" />
 									</h:inputHidden>
 									

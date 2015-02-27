@@ -4,7 +4,6 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 
-
 <ui:composition template="/WEB-INF/common/template.xhtml">
 	
 	<ui:param name="titulo_pagina" value="Cadastro de colaborador" />
@@ -26,7 +25,10 @@
 			<div class="form-group">
 				<label for="especialidade" class="col-sm-2 control-label">Especialidade</label>
 				<div class="col-sm-4">
-					<h:inputText required="true" id="especialidade" styleClass="form-control" p:placeholder="Especialidade do dentista" value="#{dentistaMB.dentista.especialidade}" />
+					<h:selectOneMenu value="#{dentistaMB.dentista.especialidade}">
+						<f:selectItem itemLabel="-- Selecione --" noSelectionOption="true" />
+						<f:selectItems value="#{dentistaMB.especialidadesOdontológicas}" var="especialidade" itemLabel="#{especialidade.descricao}" itemValue="#{especialidade}" />
+					</h:selectOneMenu>
 				</div>
 			</div>
 			
@@ -63,7 +65,7 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Sexo</label>
 				<div class="col-sm-2">
-					<h:selectOneMenu required="true" value="#{dentistaMB.dentista.sexo}">
+					<h:selectOneMenu required="true" value="#{dentistaMB.dentista.sexo}" label="sexo">
 						<f:selectItem itemLabel="-- Selecione --" noSelectionOption="true" />
 						<f:selectItems itemLabel="#{sexo.descricao}" itemValue="#{sexo}" value="#{dentistaMB.sexos}" var="sexo" />
 					</h:selectOneMenu>

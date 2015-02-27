@@ -7,6 +7,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import br.com.commons.constant.EnumEspecialidadesOdontologicas;
 import br.com.commons.constant.EnumEstadoCivil;
 import br.com.commons.constant.EnumSexo;
 
@@ -14,6 +15,7 @@ import com.google.gson.reflect.TypeToken;
 import com.upschool.entity.Dentista;
 import com.upschool.util.UtilConverter;
 import com.upschool.util.UtilJson;
+
 import br.com.medical.bean.GenericMB;
 
 @ViewScoped
@@ -58,6 +60,10 @@ public class DentistaMB extends GenericMB implements Serializable {
 
 	public EnumEstadoCivil[] getEstadosCivis() {
 		return EnumEstadoCivil.values();
+	}
+	
+	public EnumEspecialidadesOdontologicas[] getEspecialidadesOdontológicas() {
+		return EnumEspecialidadesOdontologicas.values();
 	}
 
 	public String salvar() {

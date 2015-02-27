@@ -17,7 +17,7 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label" for="nome">Nome</label>
 				<div class="col-sm-6">
-					<h:inputText id="nome" styleClass="form-control" p:placeholder="Nome do paciente" />
+					<h:inputText id="nome" styleClass="form-control" p:placeholder="Nome do paciente" required="true" />
 				</div>
 			</div>
 			
@@ -47,7 +47,7 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Sexo</label>
 				<div class="col-sm-2">
-					<h:selectOneMenu>
+					<h:selectOneMenu label="sexo">
 						<f:selectItem itemLabel="-- Selecione --" />
 						<f:selectItems itemLabel="#{sexo.descricao}" itemValue="#{sexo}" value="#{pacienteMB.sexos}" var="sexo" />
 					</h:selectOneMenu>
