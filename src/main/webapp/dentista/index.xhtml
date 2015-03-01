@@ -8,11 +8,13 @@
 	<ui:param name="titulo_pagina" value="Colaboradores" />
 	<ui:param name="subtitulo_pagina" value="Pequena descrição da funcionalidade" />
 
-
 	<ui:define name="conteudo">
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		
 		<h:form>
+			
+			<h:commandLink value="Adicionar novo dentista" action="#{dentistaMB.salvar}" />
+		
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -26,7 +28,7 @@
 				<ui:repeat var="dentista" value="#{dentistaMB.dentistas}">
 					<tr>
 						<td>#{dentista.nome}</td>
-						<td>#{dentista.especialidade}</td>
+						<td>#{dentista.especialidade.descricao}</td>
 						<td>#{dentista.registroNoCadastroRegionalOdontologico}</td>
 						<td>
 							<h:commandLink styleClass="icon-list" action="#{dentistaMB.atualizar}">
