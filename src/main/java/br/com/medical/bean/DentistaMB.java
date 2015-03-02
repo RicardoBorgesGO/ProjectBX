@@ -4,22 +4,18 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
+import br.com.commons.constant.EnumAtivoInativo;
 import br.com.commons.constant.EnumEspecialidadesOdontologicas;
 import br.com.commons.constant.EnumEstadoCivil;
 import br.com.commons.constant.EnumSexo;
 
 import com.google.gson.reflect.TypeToken;
 import com.upschool.entity.Dentista;
-import com.upschool.util.MensagemRespostaServico;
 import com.upschool.util.UtilConverter;
 import com.upschool.util.UtilJson;
-
-import br.com.medical.bean.GenericMB;
 
 @ViewScoped
 @ManagedBean
@@ -71,6 +67,10 @@ public class DentistaMB extends GenericMB implements Serializable {
 		return EnumEspecialidadesOdontologicas.values();
 	}
 	
+	public EnumAtivoInativo[] getStatus() {
+		return EnumAtivoInativo.values();
+	}
+	
 	public String salvar() {
 		if (getDentista() != null)
 			getFlashScoped().remove(getDentista());
@@ -85,20 +85,6 @@ public class DentistaMB extends GenericMB implements Serializable {
 				"http://localhost:8080/spring-jpa/rest/dentista/setDentista",
 				dentistaJson);
 
-		return "";
-	}
-	
-	public String excluir() {
-		String dentistaJson = UtilConverter.objectToJson(dentista);
-
-		// TODO Colocar url em um arquivo ou classe de configuracao
-		MensagemRespostaServico resposta = UtilJson.postJson(
-				"http://localhost:8080/spring-jpa/rest/dentista/deleteDentista",
-				dentistaJson);
-		
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(resposta.getMensagem()));
-		
 		return "";
 	}
 	

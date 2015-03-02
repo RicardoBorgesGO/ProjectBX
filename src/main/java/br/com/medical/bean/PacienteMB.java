@@ -12,19 +12,40 @@ import br.com.commons.constant.EnumSexo;
 
 import com.google.gson.reflect.TypeToken;
 import com.upschool.entity.Dentista;
+import com.upschool.entity.Paciente;
+import com.upschool.util.UtilConverter;
 import com.upschool.util.UtilJson;
 
 @ManagedBean
 @ViewScoped
-public class PacienteMB implements Serializable {
+public class PacienteMB extends GenericMB implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 3008717343099503499L;
 
+	private Paciente paciente;
+
+	private List<Paciente> pacientes;
+
 	private List<Dentista> dentistas;
-	
+
+	public Paciente getPaciente() {
+		Paciente pacienteThis = (Paciente) getFlashScoped().get("paciente");
+		
+		if (pacienteThis != null) 
+			paciente = pacienteThis;
+		else if (paciente == null) 
+			paciente = new Paciente();
+		
+		return paciente;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
+
 	/**
 	 * Retorna todos os sexos
 	 * 
@@ -43,10 +64,43 @@ public class PacienteMB implements Serializable {
 		return EnumEstadoCivil.values();
 	}
 
+	public List<Paciente> getPacientes() {
+		if (pacientes == null)
+			pacientes = UtilJson.getAllObjectJson("http://localhost:8080/spring-jpa/rest/paciente/getPacientes", new TypeToken<ArrayList<Paciente>>() {
+							}.getType());
+		return pacientes;
+	}
+
 	public List<Dentista> getDentistas() {
 		if (dentistas == null)
-			dentistas = UtilJson.getAllObjectJson("http://localhost:8080/spring-jpa/rest/dentista/getDentistas", new TypeToken<ArrayList<Dentista>>() {}.getType());
+			dentistas = UtilJson
+					.getAllObjectJson(
+							"http://localhost:8080/spring-jpa/rest/dentista/getDentistas",
+							new TypeToken<ArrayList<Dentista>>() {
+							}.getType());
 		return dentistas;
+	}
+	
+	public String salvarDentista() {
+		String pacienteJson = UtilConverter.objectToJson(paciente);
+
+		// TODO Colocar url em um arquivo ou classe de configuracao
+		UtilJson.postJson(
+				"http://localhost:8080/spring-jpa/rest/dentista/setPaciente",
+				pacienteJson);
+
+		return "";
+	}
+	
+	public String salvar() {
+		if (getPaciente() != null)
+			getFlashScoped().remove(getPaciente());
+		return "cadastro?faces-redirect=true";
+	}
+	
+	public String atualizar() {
+		getFlashScoped().put("paciente", paciente);
+		return "cadastro?faces-redirect=true";
 	}
 
 }

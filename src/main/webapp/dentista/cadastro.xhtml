@@ -72,6 +72,18 @@
 				</div>
 			</div>
 			
+			<h:panelGroup rendered="#{dentistaMB.dentista.id != null}">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Status</label>
+					<div class="col-sm-2">
+						<h:selectOneMenu required="true" value="#{dentistaMB.dentista.ativoInativo}" label="status">
+							<f:selectItem itemLabel="-- Selecione --" noSelectionOption="true" />
+							<f:selectItems itemLabel="#{status.descricao}" itemValue="#{status}" value="#{dentistaMB.status}" var="status" />
+						</h:selectOneMenu>
+					</div>
+				</div>
+			</h:panelGroup>
+			
 			<div class="form-group">
 				<label for="cep" class="col-sm-2 control-label">CEP</label>
 				<div class="col-sm-2">
