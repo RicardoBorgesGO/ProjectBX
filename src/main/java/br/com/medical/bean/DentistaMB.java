@@ -73,7 +73,7 @@ public class DentistaMB extends GenericMB implements Serializable {
 	
 	public String salvar() {
 		if (getDentista() != null)
-			getFlashScoped().remove("dentista", getDentista());
+			getFlashScoped().remove(getDentista());
 		return "cadastro?faces-redirect=true";
 	} 
 
