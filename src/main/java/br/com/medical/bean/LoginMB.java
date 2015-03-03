@@ -8,10 +8,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import com.upschool.entity.Usuario;
-import com.upschool.util.MensagemRespostaServico;
-import com.upschool.util.UtilConverter;
-import com.upschool.util.UtilJson;
+import br.com.infra.commons.entity.Usuario;
+import br.com.infra.commons.util.MensagemRespostaServico;
+import br.com.infra.commons.util.UtilConverter;
+import br.com.infra.commons.util.UtilJson;
 
 @ManagedBean
 @ViewScoped

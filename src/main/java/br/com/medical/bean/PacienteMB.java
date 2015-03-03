@@ -7,14 +7,14 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import br.com.commons.constant.EnumEstadoCivil;
-import br.com.commons.constant.EnumSexo;
+import br.com.infra.commons.constant.EnumEstadoCivil;
+import br.com.infra.commons.constant.EnumSexo;
+import br.com.infra.commons.entity.Colaborador;
+import br.com.infra.commons.entity.Paciente;
+import br.com.infra.commons.util.UtilConverter;
+import br.com.infra.commons.util.UtilJson;
 
 import com.google.gson.reflect.TypeToken;
-import com.upschool.entity.Colaborador;
-import com.upschool.entity.Paciente;
-import com.upschool.util.UtilConverter;
-import com.upschool.util.UtilJson;
 
 @ManagedBean
 @ViewScoped
@@ -93,8 +93,8 @@ public class PacienteMB extends GenericMB implements Serializable {
 	}
 	
 	public String salvar() {
-		if (getPaciente() != null)
-			getFlashScoped().remove(getPaciente());
+		paciente = new Paciente();
+		getFlashScoped().put("paciente", paciente);
 		return "cadastro?faces-redirect=true";
 	}
 	

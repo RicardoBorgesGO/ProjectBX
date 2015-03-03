@@ -6,9 +6,9 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import com.upschool.entity.Evento;
-import com.upschool.util.UtilConverter;
-import com.upschool.util.UtilJson;
+import br.com.infra.commons.entity.Evento;
+import br.com.infra.commons.util.UtilConverter;
+import br.com.infra.commons.util.UtilJson;
 
 @ManagedBean
 @ViewScoped

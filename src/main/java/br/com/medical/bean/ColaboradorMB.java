@@ -7,15 +7,15 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import br.com.commons.constant.EnumAtivoInativo;
-import br.com.commons.constant.EnumEspecialidadesOdontologicas;
-import br.com.commons.constant.EnumEstadoCivil;
-import br.com.commons.constant.EnumSexo;
+import br.com.infra.commons.constant.EnumAtivoInativo;
+import br.com.infra.commons.constant.EnumEspecialidadesOdontologicas;
+import br.com.infra.commons.constant.EnumEstadoCivil;
+import br.com.infra.commons.constant.EnumSexo;
+import br.com.infra.commons.entity.Colaborador;
+import br.com.infra.commons.util.UtilConverter;
+import br.com.infra.commons.util.UtilJson;
 
 import com.google.gson.reflect.TypeToken;
-import com.upschool.entity.Colaborador;
-import com.upschool.util.UtilConverter;
-import com.upschool.util.UtilJson;
 
 @ViewScoped
 @ManagedBean
@@ -72,8 +72,9 @@ public class ColaboradorMB extends GenericMB implements Serializable {
 	}
 	
 	public String salvar() {
-		if (getColaborador() != null)
-			getFlashScoped().remove(getColaborador());
+		colaborador = new Colaborador();
+		getFlashScoped().put("colaborador", colaborador);
+		
 		return "cadastro?faces-redirect=true";
 	} 
 
