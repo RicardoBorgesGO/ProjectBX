@@ -17,14 +17,14 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label" for="nome">Nome</label>
 				<div class="col-sm-6">
-					<h:inputText id="nome" styleClass="form-control" p:placeholder="Nome do paciente" required="true" />
+					<h:inputText id="nome" styleClass="form-control" p:placeholder="Nome do paciente" required="true" value="#{pacienteMB.paciente.nome}" />
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label class="col-sm-2 control-label" for="dataNascimento">Data de nascimento</label>
 				<div class="col-sm-2">
-					<h:inputText id="dataNascimento" styleClass="form-control" p:placeholder="__/__/____" >
+					<h:inputText id="dataNascimento" styleClass="form-control" p:placeholder="__/__/____" value="#{pacienteMB.paciente.dataDeNascimento}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:inputText>
 				</div>
@@ -33,21 +33,21 @@
 			<div class="form-group">
 				<label for="email" class="col-sm-2 control-label">Email</label>
 				<div class="col-sm-4">
-					<h:inputText required="true" id="email" styleClass="form-control" value="#{dentistaMB.dentista.email}" p:placeholder="Email" />
+					<h:inputText required="true" id="email" styleClass="form-control" value="#{pacienteMB.paciente.email}" p:placeholder="Email" />
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label for="telefone" class="col-sm-2 control-label">Telefone:</label>
 				<div class="col-sm-2">
-					<h:inputText id="telefone" styleClass="form-control" p:placeholder="(__) ____-____" />
+					<h:inputText id="telefone" styleClass="form-control" p:placeholder="(__) ____-____" value="#{pacienteMB.paciente.telefone}" />
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Sexo</label>
 				<div class="col-sm-2">
-					<h:selectOneMenu label="sexo">
+					<h:selectOneMenu label="sexo" value="#{pacienteMB.paciente.sexo}">
 						<f:selectItem itemLabel="-- Selecione --" />
 						<f:selectItems itemLabel="#{sexo.descricao}" itemValue="#{sexo}" value="#{pacienteMB.sexos}" var="sexo" />
 					</h:selectOneMenu>
@@ -57,7 +57,7 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Estado Civil</label>
 				<div class="col-sm-2">
-					<h:selectOneMenu>
+					<h:selectOneMenu value="#{pacienteMB.paciente.estadoCivil}">
 						<f:selectItem itemLabel="-- Selecione --" />
 						<f:selectItems itemLabel="#{estadoCivil.descricao}" itemValue="#{estadoCivil}" value="#{pacienteMB.estadosCivis}" var="estadoCivil" />
 					</h:selectOneMenu>
@@ -65,11 +65,11 @@
 			</div>
 			
 			<div class="form-group">
-				<label class="col-sm-2 control-label" for="exampleInputEmail1">Dentista</label>
+				<label class="col-sm-2 control-label" for="exampleInputEmail1">Colaborador</label>
 				<div class="col-sm-2">
 					<h:selectOneMenu>
 						<f:selectItem itemLabel="-- Selecione --" />
-						<f:selectItems itemLabel="#{dentista.nome}" itemValue="#{dentista}" value="#{pacienteMB.dentistas}" var="dentista" />
+						<f:selectItems itemLabel="#{colaborador.nome}" itemValue="#{colaborador}" value="#{pacienteMB.colaboradores}" var="colaborador" />
 					</h:selectOneMenu>
 				</div>
 			</div>
@@ -77,46 +77,67 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label" for="cep">CEP</label> 
 				<div class="col-sm-2">
-					<h:inputText id="cep" styleClass="form-control" p:placeholder="_____-__" />
+					<h:inputText id="cep" styleClass="form-control" p:placeholder="_____-__" value="#{pacienteMB.paciente.endereco.cep}" />
 				</div>
 			</div>
 			
 			<div class="form-group">
-				<label for="endereco" class="col-sm-2 control-label">Endereço</label>
+				<label for="endereco" class="col-sm-2 control-label">Logradouro</label>
 				<div class="col-sm-4">
-					<h:inputText id="endereco" styleClass="form-control" value="#{dentistaMB.dentista.endereco.endereco}" p:placeholder="Rua A" />
+					<h:inputText id="endereco" styleClass="form-control" value="#{pacienteMB.paciente.endereco.logradouro}" p:placeholder="Rua A" />
 				</div>
-				
 				
 				<label for="bairro" class="col-sm-1 control-label">Bairro</label>
 				<div class="col-sm-3">
-					<h:inputText id="bairro" styleClass="form-control" value="#{dentistaMB.dentista.endereco.bairro}" p:placeholder="Bairro central" />
+					<h:inputText id="bairro" styleClass="form-control" value="#{pacienteMB.paciente.endereco.bairro}" p:placeholder="Bairro central" />
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="complemento" class="col-sm-2 control-label">Complemento</label>
+				<div class="col-sm-4">
+					<h:inputText id="complemento" styleClass="form-control" value="#{pacienteMB.paciente.endereco.complemento}" p:placeholder="Qd. 123 L. 2" />
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label for="cidade" class="col-sm-2 control-label">Cidade</label>
-				<div class="col-sm-3">
-					<h:inputText id="cidade" styleClass="form-control" value="#{dentistaMB.dentista.endereco.cidade}" p:placeholder="Goiânia" />
+				<div class="col-sm-2">
+					<h:inputText id="cidade" styleClass="form-control" value="#{pacienteMB.paciente.endereco.cidade}" p:placeholder="Goiânia" />
 				</div>
 				
-				<label for="estado" class="col-sm-1 control-label">Estado</label>
-				<div class="col-sm-3">
-					<h:inputText id="estado" styleClass="form-control" value="#{dentistaMB.dentista.endereco.estado}" p:placeholder="Goiás" />
+				<label for="estado" class="col-sm-1 control-label">UF</label>
+				<div class="col-sm-2">
+					<h:inputText id="estado" styleClass="form-control" value="#{pacienteMB.paciente.endereco.estado}" p:placeholder="Goiás" />
 				</div>
 			</div>
 			
-			<h:commandButton styleClass="btn btn-primary" value="Salvar" />
-			<h:commandButton styleClass="btn btn-danger" value="Cancelar" />
+			<h:commandButton styleClass="btn btn-primary" value="Salvar" action="#{pacienteMB.salvarPaciente}" />
+			
+			<h:outputLink styleClass="btn btn-danger" value="/sgo/paciente/index.xhtml">Voltar</h:outputLink>
 		</h:form>
 		
 		<script>
 			$("#dataNascimento").mask("99/99/9999");
-			$("#telefoneResidencial").mask("(99) 9999-9999");
-			$("#telefoneComercial").mask("(99) 9999-9999");
-			$("#telefoneCelular").mask("(99) 9999-9999");
+			$("#telefone").mask("(99) 9999-9999");
 			
 			$("#cep").mask("99999-999");
+		</script>
+		
+		<script type="text/javascript">
+			$('#cep').keyup(function () {
+				var cep = $(this).val().replace('-', '');
+				
+				if (/^\d+$/.test(cep)) {
+					var url = "http://viacep.com.br/ws/" + cep + "/json/"
+					$.getJSON(url, function(result){
+				        $('#endereco').val(result.logradouro);
+				        $('#bairro').val(result.bairro);
+				        $('#cidade').val(result.localidade);
+				        $('#estado').val(result.uf);
+				    });
+				}
+			});
 		</script>
 		
 	</ui:define>

@@ -13,46 +13,46 @@ import br.com.commons.constant.EnumEstadoCivil;
 import br.com.commons.constant.EnumSexo;
 
 import com.google.gson.reflect.TypeToken;
-import com.upschool.entity.Dentista;
+import com.upschool.entity.Colaborador;
 import com.upschool.util.UtilConverter;
 import com.upschool.util.UtilJson;
 
 @ViewScoped
 @ManagedBean
-public class DentistaMB extends GenericMB implements Serializable {
+public class ColaboradorMB extends GenericMB implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3763643560114401069L;
 
-	private Dentista dentista;
+	private Colaborador colaborador;
 
-	private List<Dentista> dentistas;
+	private List<Colaborador> colaboradores;
 
-	public Dentista getDentista() {
-		Dentista dentistaThis = (Dentista) getFlashScoped().get("dentista");
+	public Colaborador getColaborador() {
+		Colaborador colaboradorThis = (Colaborador) getFlashScoped().get("colaborador");
 		
-		if (dentistaThis != null) 
-			dentista = dentistaThis;
-		else if (dentista == null) 
-			dentista = new Dentista();
+		if (colaboradorThis != null) 
+			colaborador = colaboradorThis;
+		else if (colaborador == null) 
+			colaborador = new Colaborador();
 		
-		return dentista;
+		return colaborador;
 	}
 
-	public void setDentista(Dentista dentista) {
-		this.dentista = dentista;
+	public void setColaborador(Colaborador colaborador) {
+		this.colaborador = colaborador;
 	}
 
-	public List<Dentista> getDentistas() {
-		if (dentistas == null)
-			dentistas = UtilJson.getAllObjectJson("http://localhost:8080/spring-jpa/rest/dentista/getDentistas", new TypeToken<ArrayList<Dentista>>() {}.getType());
-		return dentistas;
+	public List<Colaborador> getColaboradores() {
+		if (colaboradores == null)
+			colaboradores = UtilJson.getAllObjectJson("http://localhost:8080/spring-jpa/rest/colaborador/getColaboradores", new TypeToken<ArrayList<Colaborador>>() {}.getType());
+		return colaboradores;
 	}
 
-	public void setDentistas(List<Dentista> dentistas) {
-		this.dentistas = dentistas;
+	public void setColaboradores(List<Colaborador> colaborador) {
+		this.colaboradores = colaborador;
 	}
 
 	public EnumSexo[] getSexos() {
@@ -72,24 +72,24 @@ public class DentistaMB extends GenericMB implements Serializable {
 	}
 	
 	public String salvar() {
-		if (getDentista() != null)
-			getFlashScoped().remove(getDentista());
+		if (getColaborador() != null)
+			getFlashScoped().remove(getColaborador());
 		return "cadastro?faces-redirect=true";
 	} 
 
-	public String salvarDentista() {
-		String dentistaJson = UtilConverter.objectToJson(dentista);
+	public String salvarColaborador() {
+		String colaboradorJson = UtilConverter.objectToJson(colaborador);
 
 		// TODO Colocar url em um arquivo ou classe de configuracao
 		UtilJson.postJson(
-				"http://localhost:8080/spring-jpa/rest/dentista/setDentista",
-				dentistaJson);
+				"http://localhost:8080/spring-jpa/rest/colaborador/setColaborador",
+				colaboradorJson);
 
 		return "";
 	}
 	
 	public String atualizar() {
-		getFlashScoped().put("dentista", dentista);
+		getFlashScoped().put("colaborador", colaborador);
 		return "cadastro?faces-redirect=true";
 	}
 

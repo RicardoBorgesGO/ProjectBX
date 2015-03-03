@@ -11,7 +11,7 @@ import br.com.commons.constant.EnumEstadoCivil;
 import br.com.commons.constant.EnumSexo;
 
 import com.google.gson.reflect.TypeToken;
-import com.upschool.entity.Dentista;
+import com.upschool.entity.Colaborador;
 import com.upschool.entity.Paciente;
 import com.upschool.util.UtilConverter;
 import com.upschool.util.UtilJson;
@@ -29,7 +29,7 @@ public class PacienteMB extends GenericMB implements Serializable {
 
 	private List<Paciente> pacientes;
 
-	private List<Dentista> dentistas;
+	private List<Colaborador> colaboradores;
 
 	public Paciente getPaciente() {
 		Paciente pacienteThis = (Paciente) getFlashScoped().get("paciente");
@@ -71,22 +71,22 @@ public class PacienteMB extends GenericMB implements Serializable {
 		return pacientes;
 	}
 
-	public List<Dentista> getDentistas() {
-		if (dentistas == null)
-			dentistas = UtilJson
+	public List<Colaborador> getColaboradores() {
+		if (colaboradores == null)
+			colaboradores = UtilJson
 					.getAllObjectJson(
-							"http://localhost:8080/spring-jpa/rest/dentista/getDentistas",
-							new TypeToken<ArrayList<Dentista>>() {
+							"http://localhost:8080/spring-jpa/rest/colaborador/getColaboradores",
+							new TypeToken<ArrayList<Colaborador>>() {
 							}.getType());
-		return dentistas;
+		return colaboradores;
 	}
 	
-	public String salvarDentista() {
+	public String salvarPaciente() {
 		String pacienteJson = UtilConverter.objectToJson(paciente);
 
 		// TODO Colocar url em um arquivo ou classe de configuracao
 		UtilJson.postJson(
-				"http://localhost:8080/spring-jpa/rest/dentista/setPaciente",
+				"http://localhost:8080/spring-jpa/rest/paciente/setPaciente",
 				pacienteJson);
 
 		return "";
