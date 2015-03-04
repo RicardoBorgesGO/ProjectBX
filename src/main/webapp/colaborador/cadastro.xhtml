@@ -121,9 +121,11 @@
 				</div>
 			</div>
 			
-			<h:commandButton value="Salvar" action="#{colaboradorMB.salvarColaborador}" styleClass="btn btn-success btn-validation" />
-			
-			<h:outputLink styleClass="btn btn-danger" value="/sgo/colaborador/index.xhtml">Voltar</h:outputLink>
+			<div>
+				<h:outputLink styleClass="btn btn-danger" value="/sgo/colaborador/index.xhtml">Voltar</h:outputLink>
+				
+				<h:commandButton style="float: right;" value="Salvar" action="#{colaboradorMB.salvarColaborador}" styleClass="btn btn-success btn-validation" />
+			</div>
 		</h:form>
 		
 		<script type="text/javascript">

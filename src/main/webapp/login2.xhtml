@@ -46,33 +46,33 @@
 	                        <h3 class="panel-title">Login</h3>
 	                    </div>
 	                    <div class="panel-body">
-	                            <fieldset>
-	                            	<div class="form-group">
-		                                <div class="input-group">
-	                                	 	<span class="input-group-addon" id="basic-addon1">
-										  		<i class="fa fa-user"></i>
-										    </span>
-		                                    <h:inputText required="true" id="login" styleClass="form-control" p:placeholder="Login" value="#{loginMB.usuario.login}" />
-		                                </div>
+                            <fieldset>
+                            	<div class="form-group">
+	                                <div class="input-group">
+                                	 	<span class="input-group-addon" id="basic-addon1">
+									  		<i class="fa fa-user"></i>
+									    </span>
+	                                    <h:inputText required="true" id="login" styleClass="form-control" p:placeholder="Login" value="#{loginMB.usuario.login}" />
 	                                </div>
-	                                
-	                                <div class="form-group">
-		                                <div class="input-group">
-		                                	<span class="input-group-addon" id="basic-addon1">
-										  		<i class="fa fa-lock"></i>
-										    </span>
-		                                    <h:inputSecret required="true" id="senha" styleClass="form-control" p:placeholder="Senha" value="#{loginMB.usuario.senha}" />
-		                                </div>
+                                </div>
+                                
+                                <div class="form-group">
+	                                <div class="input-group">
+	                                	<span class="input-group-addon" id="basic-addon1">
+									  		<i class="fa fa-lock"></i>
+									    </span>
+	                                    <h:inputSecret required="true" id="senha" styleClass="form-control" p:placeholder="Senha" value="#{loginMB.usuario.senha}" />
 	                                </div>
-	                                
-	                                <div class="checkbox">
-	                                    <label>
-	                                        <input name="remember" type="checkbox" value="Remember Me" />Continuar conectado
-	                                    </label>
-	                                </div>
-	                                
-	                                <h:commandButton value="Entrar" action="#{loginMB.logar}" styleClass="btn btn-lg btn-success btn-block" />
-	                            </fieldset>
+                                </div>
+                                
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="remember" type="checkbox" value="Remember Me" />Continuar conectado
+                                    </label>
+                                </div>
+                                
+                                <h:commandButton value="Entrar" action="#{loginMB.logar}" styleClass="btn btn-lg btn-success btn-block" />
+                            </fieldset>
 	                    </div>
 	                </div>
 	            </div>

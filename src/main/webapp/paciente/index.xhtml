@@ -13,7 +13,9 @@
 		
 		<h:form>
 			
-			<h:commandLink value="Adicionar novo paciente" action="#{pacienteMB.salvar}" />
+			<h:commandLink styleClass="btn btn-default" action="#{pacienteMB.salvar}">
+				<span class="fa fa-plus"></span> Adicionar novo paciente
+			</h:commandLink>
 		
 			<table class="table table-hover">
 				<thead>

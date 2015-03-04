@@ -82,11 +82,13 @@ public class ColaboradorMB extends GenericMB implements Serializable {
 		String colaboradorJson = UtilConverter.objectToJson(colaborador);
 
 		// TODO Colocar url em um arquivo ou classe de configuracao
-		UtilJson.postJson(
+		String mensagem = UtilJson.postJson(
 				"http://localhost:8080/spring-jpa/rest/colaborador/setColaborador",
 				colaboradorJson);
-
-		return "";
+		
+		addMensagemSucesso(mensagem);
+		
+		return "index";
 	}
 	
 	public String atualizar() {
