@@ -3,19 +3,16 @@ package br.com.medical.bean;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
-import com.upschool.entity.Usuario;
-import com.upschool.util.MensagemRespostaServico;
-import com.upschool.util.UtilConverter;
-import com.upschool.util.UtilJson;
+import br.com.infra.commons.entity.Usuario;
+import br.com.infra.commons.util.UtilConverter;
+import br.com.infra.commons.util.UtilJson;
 
 @ManagedBean
 @ViewScoped
-public class LoginMB implements Serializable {
+public class LoginMB extends GenericMB implements Serializable {
 
 	private static final long serialVersionUID = 2122351638380116753L;
 
@@ -30,11 +27,12 @@ public class LoginMB implements Serializable {
 		String usuarioJson = UtilConverter.objectToJson(getUsuario());
 
 		// TODO Colocar url em um arquivo ou classe de configuracao
-		MensagemRespostaServico resposta = UtilJson.postJson(
+		String message = UtilJson.postJson(
 				"http://localhost:8080/spring-jpa/rest/usuario/realizarLogin",
 				usuarioJson);
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(resposta.getMensagem()));
+		
+		addMensagemSucesso(message);
+		
 		return "blank.xhtml";
 	}
 

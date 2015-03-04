@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<ui:composition template="/WEB-INF/common/template.xhtml">
+	
+	<ui:param name="titulo_pagina" value="Paciente" />
+	<ui:param name="subtitulo_pagina" value="Pequena descrição da funcionalidade" />
+
+	<ui:define name="conteudo">
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		
+		<h:form>
+			
+			<h:commandLink value="Adicionar novo paciente" action="#{pacienteMB.salvar}" />
+		
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Telefone</th>
+						<th>Email</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+				<ui:repeat var="paciente" value="#{pacienteMB.pacientes}">
+					<tr>
+						<td>#{paciente.nome}</td>
+						<td>#{paciente.telefone}</td>
+						<td>#{paciente.email}</td>
+						<td>
+							<h:commandLink styleClass="icon-list" action="#{pacienteMB.atualizar}">
+								<f:setPropertyActionListener target="#{pacienteMB.paciente}" value="#{paciente}" />
+								<i class="fa fa-pencil"></i>
+							</h:commandLink>
+						</td>
+					</tr>
+				</ui:repeat>
+				</tbody>
+			</table>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

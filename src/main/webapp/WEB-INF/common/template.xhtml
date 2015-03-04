@@ -17,8 +17,6 @@
     <!-- Bootstrap Core CSS -->
     <link href="/sgo/javax.faces.resource/bootstrap/dist/css/bootstrap.min.css.xhtml?ln=bower_components" rel="stylesheet" />
     
-    <link href="/sgo/javax.faces.resource/main.css.xhtml?ln=css" rel="stylesheet" />
-
     <!-- MetisMenu CSS -->
     <link href="/sgo/javax.faces.resource/metisMenu/dist/metisMenu.min.css.xhtml?ln=bower_components" rel="stylesheet" />
 
@@ -27,6 +25,8 @@
 
     <!-- Custom Fonts -->
     <link href="/sgo/resources/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    
+    <link href="/sgo/javax.faces.resource/main.css.xhtml?ln=css" rel="stylesheet" />
     
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -60,7 +60,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-						<h:messages />
+						<h:messages  errorClass="alert alert-danger" infoClass="alert alert-info" warnClass="alert alert-warning"  />
 						
 						<div style="border-bottom: 1px solid #eee; margin-left: -45px; margin-right: -45px; background: #FAFAFA; padding: 1px 0px 10px 30px;">
 							<h2 style="text-transform: uppercase;">#{titulo_pagina}</h2>

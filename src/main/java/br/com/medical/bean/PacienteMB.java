@@ -7,24 +7,45 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import br.com.commons.constant.EnumEstadoCivil;
-import br.com.commons.constant.EnumSexo;
+import br.com.infra.commons.constant.EnumEstadoCivil;
+import br.com.infra.commons.constant.EnumSexo;
+import br.com.infra.commons.entity.Colaborador;
+import br.com.infra.commons.entity.Paciente;
+import br.com.infra.commons.util.UtilConverter;
+import br.com.infra.commons.util.UtilJson;
 
 import com.google.gson.reflect.TypeToken;
-import com.upschool.entity.Dentista;
-import com.upschool.util.UtilJson;
 
 @ManagedBean
 @ViewScoped
-public class PacienteMB implements Serializable {
+public class PacienteMB extends GenericMB implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 3008717343099503499L;
 
-	private List<Dentista> dentistas;
-	
+	private Paciente paciente;
+
+	private List<Paciente> pacientes;
+
+	private List<Colaborador> colaboradores;
+
+	public Paciente getPaciente() {
+		Paciente pacienteThis = (Paciente) getFlashScoped().get("paciente");
+		
+		if (pacienteThis != null) 
+			paciente = pacienteThis;
+		else if (paciente == null) 
+			paciente = new Paciente();
+		
+		return paciente;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
+
 	/**
 	 * Retorna todos os sexos
 	 * 
@@ -43,10 +64,45 @@ public class PacienteMB implements Serializable {
 		return EnumEstadoCivil.values();
 	}
 
-	public List<Dentista> getDentistas() {
-		if (dentistas == null)
-			dentistas = UtilJson.getAllObjectJson("http://localhost:8080/spring-jpa/rest/dentista/getDentistas", new TypeToken<ArrayList<Dentista>>() {}.getType());
-		return dentistas;
+	public List<Paciente> getPacientes() {
+		if (pacientes == null)
+			pacientes = UtilJson.getAllObjectJson("http://localhost:8080/spring-jpa/rest/paciente/getPacientes", new TypeToken<ArrayList<Paciente>>() {
+							}.getType());
+		return pacientes;
+	}
+
+	public List<Colaborador> getColaboradores() {
+		if (colaboradores == null)
+			colaboradores = UtilJson
+					.getAllObjectJson(
+							"http://localhost:8080/spring-jpa/rest/colaborador/getColaboradores",
+							new TypeToken<ArrayList<Colaborador>>() {
+							}.getType());
+		return colaboradores;
+	}
+	
+	public String salvarPaciente() {
+		String pacienteJson = UtilConverter.objectToJson(paciente);
+
+		// TODO Colocar url em um arquivo ou classe de configuracao
+		String mensagem = UtilJson.postJson(
+				"http://localhost:8080/spring-jpa/rest/paciente/setPaciente",
+				pacienteJson);
+		
+		addMensagemSucesso(mensagem);
+		
+		return "index";
+	}
+	
+	public String salvar() {
+		paciente = new Paciente();
+		getFlashScoped().put("paciente", paciente);
+		return "cadastro?faces-redirect=true";
+	}
+	
+	public String atualizar() {
+		getFlashScoped().put("paciente", paciente);
+		return "cadastro?faces-redirect=true";
 	}
 
 }

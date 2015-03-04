@@ -4,6 +4,11 @@
 	margin-top: 35px;
 }
 
+.form-group.required .control-label:after { 
+   content:"*";
+   color:red;
+}
+
 /* Reescrita Bootstrap */
 
 .navbar-default {

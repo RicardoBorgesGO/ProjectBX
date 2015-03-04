@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/WEB-INF/common/template.xhtml">
+	
+	<ui:param name="titulo_pagina" value="Cadastro de colaborador" />
+	<ui:param name="subtitulo_pagina" value="Pequena descrição da funcionalidade" />
+
+	<ui:define name="conteudo">
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<h:outputScript library="js" name="jquery.maskedinput.min.js" />
+	
+		<h:form prependId="false" styleClass="form-horizontal">
+			<div class="form-group required">
+				<label for="nome" class="col-sm-2 control-label">Nome</label>
+				<div class="col-sm-5">
+					<h:inputText required="true" id="nome" styleClass="form-control validation-required" p:placeholder="Nome do colaborador" value="#{colaboradorMB.colaborador.nome}" />
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="especialidade" class="col-sm-2 control-label">Especialidade</label>
+				<div class="col-sm-4">
+					<h:selectOneMenu value="#{colaboradorMB.colaborador.especialidade}">
+						<f:selectItem itemLabel="-- Selecione --" noSelectionOption="true" />
+						<f:selectItems value="#{colaboradorMB.especialidadesOdontológicas}" var="especialidade" itemLabel="#{especialidade.descricao}" itemValue="#{especialidade}" />
+					</h:selectOneMenu>
+				</div>
+			</div>
+			
+			<div class="form-group required">
+				<label for="dataNascimento" class="col-sm-2 control-label">Data de nascimento</label>
+				<div class="col-sm-2">
+					<h:inputText required="true" id="dataNascimento" styleClass="form-control validation-required" value="#{colaboradorMB.colaborador.dataDeNascimento}" p:placeholder="__/__/____">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:inputText>
+				</div>
+			</div>
+			
+			<div class="form-group required">
+				<label for="email" class="col-sm-2 control-label">Email</label>
+				<div class="col-sm-4">
+					<h:inputText required="true" id="email" styleClass="form-control validation-required" value="#{colaboradorMB.colaborador.email}" p:placeholder="Email" />
+				</div>
+			</div>
+			
+			<div class="form-group required">
+				<label for="telefone" class="col-sm-2 control-label">Telefone</label>
+				<div class="col-sm-2">
+					<h:inputText required="true" id="telefone" styleClass="form-control validation-required" value="#{colaboradorMB.colaborador.telefone}" p:placeholder="(__) ____-____" />
+				</div>
+			</div>
+			
+			<div class="form-group required">
+				<label for="cro" class="col-sm-2 control-label">CRO</label>
+				<div class="col-sm-2">
+					<h:inputText required="true" id="cro" styleClass="form-control validation-required" value="#{colaboradorMB.colaborador.registroNoCadastroRegionalOdontologico}" p:placeholder="CRO" />
+				</div>
+			</div>
+			
+			<div class="form-group required">
+				<label class="col-sm-2 control-label">Sexo</label>
+				<div class="col-sm-2">
+					<h:selectOneMenu styleClass="validation-required" required="true" value="#{colaboradorMB.colaborador.sexo}" label="sexo">
+						<f:selectItem itemLabel="-- Selecione --" noSelectionOption="true" />
+						<f:selectItems itemLabel="#{sexo.descricao}" itemValue="#{sexo}" value="#{colaboradorMB.sexos}" var="sexo" />
+					</h:selectOneMenu>
+				</div>
+			</div>
+			
+			<h:panelGroup rendered="#{colaboradorMB.colaborador.id != null}">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Status</label>
+					<div class="col-sm-2">
+						<h:selectOneMenu required="true" value="#{colaboradorMB.colaborador.ativoInativo}" label="status">
+							<f:selectItem itemLabel="-- Selecione --" noSelectionOption="true" />
+							<f:selectItems itemLabel="#{status.descricao}" itemValue="#{status}" value="#{colaboradorMB.status}" var="status" />
+						</h:selectOneMenu>
+					</div>
+				</div>
+			</h:panelGroup>
+			
+			<div class="form-group required">
+				<label for="cep" class="col-sm-2 control-label">CEP</label>
+				<div class="col-sm-2">
+					<h:inputText required="true" id="cep" styleClass="form-control validation-required" value="#{colaboradorMB.colaborador.endereco.cep}" p:placeholder="74000-00" />
+				</div>
+			</div>
+			
+			<div class="form-group required">
+				<label for="endereco" class="col-sm-2 control-label">Logradouro</label>
+				<div class="col-sm-4">
+					<h:inputText required="true" id="endereco" styleClass="form-control validation-required" value="#{colaboradorMB.colaborador.endereco.logradouro}" p:placeholder="Rua A" />
+				</div>
+				
+				<label for="bairro" class="col-sm-1 control-label">Bairro</label>
+				<div class="col-sm-3">
+					<h:inputText required="true" id="bairro" styleClass="form-control validation-required" value="#{colaboradorMB.colaborador.endereco.bairro}" p:placeholder="Bairro central" />
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="complemento" class="col-sm-2 control-label">Complemento</label>
+				<div class="col-sm-4">
+					<h:inputText id="complemento" styleClass="form-control" value="#{colaboradorMB.colaborador.endereco.complemento}" p:placeholder="Qd. 123 L. 2" />
+				</div>
+			</div>
+			
+			<div class="form-group required">
+				<label for="cidade" class="col-sm-2 control-label">Cidade</label>
+				<div class="col-sm-3">
+					<h:inputText required="true" id="cidade" styleClass="form-control validation-required" value="#{colaboradorMB.colaborador.endereco.cidade}" p:placeholder="Goiânia" />
+				</div>
+				
+				<label for="estado" class="col-sm-1 control-label">UF</label>
+				<div class="col-sm-3">
+					<h:inputText required="true" id="estado" styleClass="form-control validation-required" value="#{colaboradorMB.colaborador.endereco.estado}" p:placeholder="Goiás" />
+				</div>
+			</div>
+			
+			<h:commandButton value="Salvar" action="#{colaboradorMB.salvarColaborador}" styleClass="btn btn-success btn-validation" />
+			
+			<h:outputLink styleClass="btn btn-danger" value="/sgo/colaborador/index.xhtml">Voltar</h:outputLink>
+		</h:form>
+		
+		<script type="text/javascript">
+			$("#dataNascimento").mask("99/99/9999");
+			$("#telefone").mask("(99) 9999-9999");
+			
+			$("#cep").mask("99999-999");
+		</script>
+		
+		<script type="text/javascript">
+			$('#cep').keyup(function () {
+				var cep = $(this).val().replace('-', '');
+				
+				if (/^\d+$/.test(cep)) {
+					var url = "http://viacep.com.br/ws/" + cep + "/json/"
+					$.getJSON(url, function(result){
+				        $('#endereco').val(result.logradouro);
+				        $('#bairro').val(result.bairro);
+				        $('#cidade').val(result.localidade);
+				        $('#estado').val(result.uf);
+				    });
+				}
+			});
+		</script>
+		
+		<h:outputScript name="validation-input.js" library="js" />
+	</ui:define>
+</ui:composition>
+
+</html>
