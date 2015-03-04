@@ -13,34 +13,40 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<h:outputScript library="js" name="jquery.maskedinput.min.js" />
 		
+	    <script type="text/javascript">
+		    $(document).ready(function(){
+		        $('[data-toggle="tooltip"]').tooltip();   
+		    });
+	    </script>
+		
 		<h:form prependId="false" styleClass="form-horizontal">
-			<div class="form-group">
+			<div class="form-group required">
 				<label class="col-sm-2 control-label" for="nome">Nome</label>
 				<div class="col-sm-6">
-					<h:inputText id="nome" styleClass="form-control" p:placeholder="Nome do paciente" required="true" value="#{pacienteMB.paciente.nome}" />
+					<h:inputText id="nome" styleClass="form-control validation-required" p:placeholder="Nome do paciente" required="true" value="#{pacienteMB.paciente.nome}" />
 				</div>
 			</div>
 			
-			<div class="form-group">
+			<div class="form-group required">
 				<label class="col-sm-2 control-label" for="dataNascimento">Data de nascimento</label>
 				<div class="col-sm-2">
-					<h:inputText id="dataNascimento" styleClass="form-control" p:placeholder="__/__/____" value="#{pacienteMB.paciente.dataDeNascimento}">
+					<h:inputText required="true" id="dataNascimento" styleClass="form-control validation-required" p:placeholder="__/__/____" value="#{pacienteMB.paciente.dataDeNascimento}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:inputText>
 				</div>
 			</div>
 			
-			<div class="form-group">
+			<div class="form-group required">
 				<label for="email" class="col-sm-2 control-label">Email</label>
 				<div class="col-sm-4">
-					<h:inputText required="true" id="email" styleClass="form-control" value="#{pacienteMB.paciente.email}" p:placeholder="Email" />
+					<h:inputText required="true" id="email" styleClass="form-control validation-required" value="#{pacienteMB.paciente.email}" p:placeholder="Email" />
 				</div>
 			</div>
 			
-			<div class="form-group">
+			<div class="form-group required">
 				<label for="telefone" class="col-sm-2 control-label">Telefone:</label>
 				<div class="col-sm-2">
-					<h:inputText id="telefone" styleClass="form-control" p:placeholder="(__) ____-____" value="#{pacienteMB.paciente.telefone}" />
+					<h:inputText required="true" id="telefone" styleClass="form-control validation-required" p:placeholder="(__) ____-____" value="#{pacienteMB.paciente.telefone}" />
 				</div>
 			</div>
 			
@@ -64,32 +70,32 @@
 				</div>
 			</div>
 			
-			<div class="form-group">
+			<div class="form-group required">
 				<label class="col-sm-2 control-label" for="exampleInputEmail1">Colaborador</label>
 				<div class="col-sm-2">
-					<h:selectOneMenu>
+					<h:selectOneMenu required="true" styleClass="validation-required">
 						<f:selectItem itemLabel="-- Selecione --" />
 						<f:selectItems itemLabel="#{colaborador.nome}" itemValue="#{colaborador}" value="#{pacienteMB.colaboradores}" var="colaborador" />
 					</h:selectOneMenu>
 				</div>
 			</div>
 			
-			<div class="form-group">
+			<div class="form-group required">
 				<label class="col-sm-2 control-label" for="cep">CEP</label> 
 				<div class="col-sm-2">
-					<h:inputText id="cep" styleClass="form-control" p:placeholder="_____-__" value="#{pacienteMB.paciente.endereco.cep}" />
+					<h:inputText required="true" id="cep" styleClass="form-control validation-required" p:placeholder="_____-__" value="#{pacienteMB.paciente.endereco.cep}" />
 				</div>
 			</div>
 			
-			<div class="form-group">
+			<div class="form-group required">
 				<label for="endereco" class="col-sm-2 control-label">Logradouro</label>
 				<div class="col-sm-4">
-					<h:inputText id="endereco" styleClass="form-control" value="#{pacienteMB.paciente.endereco.logradouro}" p:placeholder="Rua A" />
+					<h:inputText rendered="true" id="endereco" styleClass="form-control validation-required" value="#{pacienteMB.paciente.endereco.logradouro}" p:placeholder="Rua A" />
 				</div>
 				
 				<label for="bairro" class="col-sm-1 control-label">Bairro</label>
 				<div class="col-sm-3">
-					<h:inputText id="bairro" styleClass="form-control" value="#{pacienteMB.paciente.endereco.bairro}" p:placeholder="Bairro central" />
+					<h:inputText rendered="true" id="bairro" styleClass="form-control validation-required" value="#{pacienteMB.paciente.endereco.bairro}" p:placeholder="Bairro central" />
 				</div>
 			</div>
 			
@@ -100,19 +106,19 @@
 				</div>
 			</div>
 			
-			<div class="form-group">
+			<div class="form-group required">
 				<label for="cidade" class="col-sm-2 control-label">Cidade</label>
 				<div class="col-sm-2">
-					<h:inputText id="cidade" styleClass="form-control" value="#{pacienteMB.paciente.endereco.cidade}" p:placeholder="Goiânia" />
+					<h:inputText rendered="true" id="cidade" styleClass="form-control validation-required" value="#{pacienteMB.paciente.endereco.cidade}" p:placeholder="Goiânia" />
 				</div>
 				
 				<label for="estado" class="col-sm-1 control-label">UF</label>
 				<div class="col-sm-2">
-					<h:inputText id="estado" styleClass="form-control" value="#{pacienteMB.paciente.endereco.estado}" p:placeholder="Goiás" />
+					<h:inputText rendered="true" id="estado" styleClass="form-control validation-required" value="#{pacienteMB.paciente.endereco.estado}" p:placeholder="Goiás" />
 				</div>
 			</div>
 			
-			<h:commandButton styleClass="btn btn-primary" value="Salvar" action="#{pacienteMB.salvarPaciente}" />
+			<h:commandButton styleClass="btn btn-success btn-validation" value="Salvar" action="#{pacienteMB.salvarPaciente}" />
 			
 			<h:outputLink styleClass="btn btn-danger" value="/sgo/paciente/index.xhtml">Voltar</h:outputLink>
 		</h:form>
@@ -139,6 +145,8 @@
 				}
 			});
 		</script>
+		
+		<h:outputScript name="validation-input.js" library="js" />
 		
 	</ui:define>
 </ui:composition>
