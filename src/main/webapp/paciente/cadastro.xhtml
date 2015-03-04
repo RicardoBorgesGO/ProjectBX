@@ -12,6 +12,7 @@
 	<ui:define name="conteudo">
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<h:outputScript library="js" name="jquery.maskedinput.min.js" />
+		<h:outputScript library="js" name="jquery.bootstrap-growl.min.js" />
 		
 	    <script type="text/javascript">
 		    $(document).ready(function(){
@@ -73,7 +74,8 @@
 			<div class="form-group required">
 				<label class="col-sm-2 control-label" for="exampleInputEmail1">Colaborador</label>
 				<div class="col-sm-2">
-					<h:selectOneMenu required="true" styleClass="validation-required">
+					<h:selectOneMenu label="Colaborador" value="#{pacienteMB.paciente.colaborador}" required="true" styleClass="validation-required">
+						<f:converter converterId="br.com.medical.converter.ColaboradorConverter" />
 						<f:selectItem itemLabel="-- Selecione --" />
 						<f:selectItems itemLabel="#{colaborador.nome}" itemValue="#{colaborador}" value="#{pacienteMB.colaboradores}" var="colaborador" />
 					</h:selectOneMenu>
@@ -118,9 +120,11 @@
 				</div>
 			</div>
 			
-			<h:commandButton styleClass="btn btn-success btn-validation" value="Salvar" action="#{pacienteMB.salvarPaciente}" />
-			
-			<h:outputLink styleClass="btn btn-danger" value="/sgo/paciente/index.xhtml">Voltar</h:outputLink>
+			<div>
+				<h:outputLink styleClass="btn btn-danger" value="/sgo/paciente/index.xhtml">Voltar</h:outputLink>
+				
+				<h:commandButton style="float: right;" styleClass="btn btn-success btn-validation" value="Salvar" action="#{pacienteMB.salvarPaciente}" />
+			</div>
 		</h:form>
 		
 		<script>
@@ -142,13 +146,20 @@
 				        $('#cidade').val(result.localidade);
 				        $('#estado').val(result.uf);
 				    });
+					clearFieldsEndereco();
 				}
 			});
+			
+			function clearFieldsEndereco() {
+				$('#endereco').closest('.form-group').removeClass('has-error');
+				$('#bairro').closest('.form-group').removeClass('has-error');
+				$('#cidade').closest('.form-group').removeClass('has-error');
+				$('#estado').closest('.form-group').removeClass('has-error');				
+			}
 		</script>
 		
 		<h:outputScript name="validation-input.js" library="js" />
 		
 	</ui:define>
 </ui:composition>
-
 </html>

@@ -85,11 +85,13 @@ public class PacienteMB extends GenericMB implements Serializable {
 		String pacienteJson = UtilConverter.objectToJson(paciente);
 
 		// TODO Colocar url em um arquivo ou classe de configuracao
-		UtilJson.postJson(
+		String mensagem = UtilJson.postJson(
 				"http://localhost:8080/spring-jpa/rest/paciente/setPaciente",
 				pacienteJson);
-
-		return "";
+		
+		addMensagemSucesso(mensagem);
+		
+		return "index";
 	}
 	
 	public String salvar() {

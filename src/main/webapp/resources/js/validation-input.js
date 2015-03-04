@@ -18,10 +18,21 @@ $('.btn-validation').click(function() {
 			$('.form-group .validation-required:eq(' + i + ')').closest('.form-group').removeClass('has-error');
 		}
 	}
-	if (hasError)
+	if (hasError) {
+		$.bootstrapGrowl("Campos obrigatórios", {
+			ele: 'body', // which element to append to
+			type: 'danger', // (null, 'info', 'danger', 'success')
+			offset: {from: 'top', amount: 60}, // 'top', or 'bottom'
+			align: 'right', // ('left', 'right', or 'center')
+			width: 250, // (integer, or 'auto')
+			delay: 4000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+			allow_dismiss: true, // If true then will display a cross to close the popup.
+			stackup_spacing: 10 // spacing between consecutively stacked growls.
+		});
 		return false;
-	else
+	} else {
 		return true;
+	}
 });
 
 
