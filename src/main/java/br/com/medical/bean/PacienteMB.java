@@ -33,12 +33,12 @@ public class PacienteMB extends GenericMB implements Serializable {
 
 	public Paciente getPaciente() {
 		Paciente pacienteThis = (Paciente) getFlashScoped().get("paciente");
-		
-		if (pacienteThis != null) 
+
+		if (pacienteThis != null)
 			paciente = pacienteThis;
-		else if (paciente == null) 
+		else if (paciente == null)
 			paciente = new Paciente();
-		
+
 		return paciente;
 	}
 
@@ -66,7 +66,10 @@ public class PacienteMB extends GenericMB implements Serializable {
 
 	public List<Paciente> getPacientes() {
 		if (pacientes == null)
-			pacientes = UtilJson.getAllObjectJson("http://localhost:8080/spring-jpa/rest/paciente/getPacientes", new TypeToken<ArrayList<Paciente>>() {
+			pacientes = UtilJson
+					.getAllObjectJson(
+							"http://localhost:8080/spring-jpa/rest/paciente/getPacientes",
+							new TypeToken<ArrayList<Paciente>>() {
 							}.getType());
 		return pacientes;
 	}
@@ -80,7 +83,7 @@ public class PacienteMB extends GenericMB implements Serializable {
 							}.getType());
 		return colaboradores;
 	}
-	
+
 	public String salvarPaciente() {
 		String pacienteJson = UtilConverter.objectToJson(paciente);
 
@@ -88,18 +91,18 @@ public class PacienteMB extends GenericMB implements Serializable {
 		String mensagem = UtilJson.postJson(
 				"http://localhost:8080/spring-jpa/rest/paciente/setPaciente",
 				pacienteJson);
-		
+
 		addMensagemSucesso(mensagem);
-		
+
 		return "index";
 	}
-	
+
 	public String salvar() {
 		paciente = new Paciente();
 		getFlashScoped().put("paciente", paciente);
 		return "cadastro?faces-redirect=true";
 	}
-	
+
 	public String atualizar() {
 		getFlashScoped().put("paciente", paciente);
 		return "cadastro?faces-redirect=true";

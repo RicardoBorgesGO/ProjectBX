@@ -30,9 +30,9 @@ public class LoginMB extends GenericMB implements Serializable {
 		String message = UtilJson.postJson(
 				"http://localhost:8080/spring-jpa/rest/usuario/realizarLogin",
 				usuarioJson);
-		
+
 		addMensagemSucesso(message);
-		
+
 		return "blank.xhtml";
 	}
 
