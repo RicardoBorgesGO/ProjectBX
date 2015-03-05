@@ -1,3 +1,8 @@
+var imported = document.createElement('script');
+imported.src = '/sgo/javax.faces.resource/jquery.bootstrap-growl.min.js.xhtml?ln=js';
+document.head.appendChild(imported);
+
+
 /**
  * JavaScript utilitário para validação.
  * 
@@ -31,6 +36,7 @@ $('.btn-validation').click(function() {
 		});
 		return false;
 	} else {
+		alert("Passou");
 		return true;
 	}
 });

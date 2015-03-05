@@ -8,6 +8,8 @@
 
 	<ui:composition template="/WEB-INF/common/template.xhtml">
 		<ui:define name="conteudo">
+			<h:outputStylesheet library="css" name="autocomplete.css" />
+			<h:outputScript library="js" name="typeahead.bundle.js" />
 		
 			<link href="resources/css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
 			<link href="resources/css/fullcalendar/fullcalendar.print.css" rel="stylesheet" type="text/css" media="print" />
@@ -28,6 +30,9 @@
 						        <p>One fine body...</p>
 						        
 						        <div class="form-group">
+									<label for="paciente">Nome do paciente</label>
+						        	<h:inputText id="paciente" styleClass="form-control search-paciente" />
+						        	
 									<label for="evento">Evento</label>
 									<h:inputText class="form-control" id="evento" placeholder="Nome do evento" value="#{eventoMB.evento.nomeDoEvento}" />
 									
@@ -98,7 +103,6 @@
 			    	editable: true,
 			    	selectable: true,
 			    	select: function(start, end) {
-// 			    		alert(moment(start).format("YYYY/MM/DD HH:mm"));
 			    		var dataInicial = moment(start).format("YYYY/MM/DD hh:mm");
 			    		var dataFinal = moment(end).format("YYYY/MM/DD hh:mm");
 			    		
@@ -146,6 +150,8 @@
 		
 			});
 			</script>
+			
+			<h:outputScript library="js" name="autocomplete.js" />
 		</ui:define>
 	</ui:composition>
 
