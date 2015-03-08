@@ -10,7 +10,7 @@
 		<ui:define name="conteudo">
 			<h:outputStylesheet library="css" name="autocomplete.css" />
 			<h:outputScript library="js" name="typeahead.bundle.js" />
-		
+			
 			<link href="resources/css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
 			<link href="resources/css/fullcalendar/fullcalendar.print.css" rel="stylesheet" type="text/css" media="print" />
 			
@@ -31,7 +31,14 @@
 						        
 						        <div class="form-group">
 									<label for="paciente">Nome do paciente</label>
-						        	<h:inputText id="paciente" styleClass="form-control search-paciente" />
+						        	<h:inputText id="paciente" styleClass="form-control search-paciente" value="#{eventoMB.evento.paciente.nome}" />
+						        	
+						        	<h:inputHidden id="pacienteID" value="#{eventoMB.evento.paciente.id}" />
+						        	
+						        	<label for="colaborador">Nome do colaboador</label>
+						        	<h:inputText id="colaborador" styleClass="form-control search-colaborador" value="#{eventoMB.evento.colaborador.nome}" />
+						        	
+						        	<h:inputHidden id="colaboradorID" value="#{eventoMB.evento.colaborador.id}" />
 						        	
 									<label for="evento">Evento</label>
 									<h:inputText class="form-control" id="evento" placeholder="Nome do evento" value="#{eventoMB.evento.nomeDoEvento}" />
