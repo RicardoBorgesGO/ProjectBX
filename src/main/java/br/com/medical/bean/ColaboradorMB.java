@@ -12,6 +12,7 @@ import br.com.infra.commons.constant.EnumEspecialidadesOdontologicas;
 import br.com.infra.commons.constant.EnumEstadoCivil;
 import br.com.infra.commons.constant.EnumSexo;
 import br.com.infra.commons.entity.Colaborador;
+import br.com.infra.commons.entity.TipoDeColaborador;
 import br.com.infra.commons.util.UtilConverter;
 import br.com.infra.commons.util.UtilJson;
 
@@ -29,6 +30,8 @@ public class ColaboradorMB extends GenericMB implements Serializable {
 	private Colaborador colaborador;
 
 	private List<Colaborador> colaboradores;
+	
+	private List<TipoDeColaborador> tipoDeColaboradores;
 
 	public Colaborador getColaborador() {
 		Colaborador colaboradorThis = (Colaborador) getFlashScoped().get("colaborador");
@@ -43,6 +46,12 @@ public class ColaboradorMB extends GenericMB implements Serializable {
 
 	public void setColaborador(Colaborador colaborador) {
 		this.colaborador = colaborador;
+	}
+	
+	public List<TipoDeColaborador> getTipoDeColaboradores() {
+		if (tipoDeColaboradores == null)
+			tipoDeColaboradores = UtilJson.getAllObjectJson("http://localhost:8080/spring-jpa/rest/colaborador/getTiposDeColaboradores", new TypeToken<ArrayList<TipoDeColaborador>>() {}.getType());
+		return tipoDeColaboradores;
 	}
 
 	public List<Colaborador> getColaboradores() {

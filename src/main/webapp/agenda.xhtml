@@ -11,8 +11,8 @@
 			<h:outputStylesheet library="css" name="autocomplete.css" />
 			<h:outputScript library="js" name="typeahead.bundle.js" />
 			
-			<link href="resources/css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
-			<link href="resources/css/fullcalendar/fullcalendar.print.css" rel="stylesheet" type="text/css" media="print" />
+			<link href="#{request.contextPath}/resources/css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
+			<link href="#{request.contextPath}/resources/css/fullcalendar/fullcalendar.print.css" rel="stylesheet" type="text/css" media="print" />
 			
 			<h1>Agenda</h1>
 			
@@ -95,9 +95,9 @@
 			  </div><!-- /.modal-dialog -->
 			</div><!-- /.modal -->
 		
-		    <script type="text/javascript" src="resources/js/moment.min.js"></script>
-		    <script type="text/javascript" src="resources/js/fullcalendar.min.js"></script>
-		    <script type="text/javascript" src="resources/js/pt-br.js"></script>
+		    <script type="text/javascript" src="#{request.contextPath}/resources/js/moment.min.js"></script>
+		    <script type="text/javascript" src="#{request.contextPath}/resources/js/fullcalendar.min.js"></script>
+		    <script type="text/javascript" src="#{request.contextPath}/resources/js/pt-br.js"></script>
 		    
 			<script type="text/javascript">
 			$(document).ready(function() {
