@@ -22,14 +22,28 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="especialidade" class="col-sm-2 control-label">Especialidade</label>
+				<label for="tipoDeColaborador" class="col-sm-2 control-label">Tipo de colaborador #{colaboradorMB.colaborador.tipoDeColaborador}</label>
 				<div class="col-sm-4">
-					<h:selectOneMenu value="#{colaboradorMB.colaborador.especialidade}">
+					<h:selectOneMenu label="Tipo de Colaborador" value="#{colaboradorMB.colaborador.tipoDeColaborador}" required="true" converter="#{tipoDeColaboradorConverterMB}">
+						<f:ajax execute="@this" render="especialidade-block" />
 						<f:selectItem itemLabel="-- Selecione --" noSelectionOption="true" />
-						<f:selectItems value="#{colaboradorMB.especialidadesOdontológicas}" var="especialidade" itemLabel="#{especialidade.descricao}" itemValue="#{especialidade}" />
+						<f:selectItems value="#{colaboradorMB.tipoDeColaboradores}" var="tipoDeColaborador" itemLabel="#{tipoDeColaborador.nome}" itemValue="#{tipoDeColaborador}" />
 					</h:selectOneMenu>
+					
 				</div>
 			</div>
+			
+			<h:panelGroup id="especialidade-block">
+				<h:panelGroup layout="block" styleClass="form-group required" rendered="#{colaboradorMB.colaborador.tipoDeColaborador.especialidade}">
+					<label for="especialidade" class="col-sm-2 control-label">Especialidade</label>
+					<div class="col-sm-4">
+						<h:selectOneMenu styleClass="validation-required" value="#{colaboradorMB.colaborador.especialidade}">
+							<f:selectItem itemLabel="-- Selecione --" noSelectionOption="true" />
+							<f:selectItems value="#{colaboradorMB.especialidadesOdontológicas}" var="especialidade" itemLabel="#{especialidade.descricao}" itemValue="#{especialidade}" />
+						</h:selectOneMenu>
+					</div>
+				</h:panelGroup>
+			</h:panelGroup>
 			
 			<div class="form-group required">
 				<label for="dataNascimento" class="col-sm-2 control-label">Data de nascimento</label>
