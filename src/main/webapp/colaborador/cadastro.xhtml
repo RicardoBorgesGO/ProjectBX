@@ -25,7 +25,7 @@
 				<label for="tipoDeColaborador" class="col-sm-2 control-label">Tipo de colaborador</label>
 				<div class="col-sm-4">
 					<h:selectOneMenu label="Tipo de Colaborador" value="#{colaboradorMB.colaborador.tipoDeColaborador}" required="true" converter="#{tipoDeColaboradorConverterMB}">
-						<f:ajax execute="@this" render="especialidade-block" />
+						<f:ajax execute="@this" render="especialidade-block" listener="#{colaboradorMB.alterarEspecialidade}" />
 						<f:selectItem itemLabel="-- Selecione --" noSelectionOption="true" />
 						<f:selectItems value="#{colaboradorMB.tipoDeColaboradores}" var="tipoDeColaborador" itemLabel="#{tipoDeColaborador.nome}" itemValue="#{tipoDeColaborador}" />
 					</h:selectOneMenu>

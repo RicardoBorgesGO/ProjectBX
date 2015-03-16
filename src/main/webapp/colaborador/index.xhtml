@@ -21,6 +21,7 @@
 				<thead>
 					<tr>
 						<th>Nome</th>
+						<th>Tipo</th>
 						<th>Especialidade</th>
 						<th>Registro no conselho</th>
 						<th></th>
@@ -30,6 +31,7 @@
 				<ui:repeat var="colaborador" value="#{colaboradorMB.colaboradores}">
 					<tr>
 						<td>#{colaborador.nome}</td>
+						<td>#{colaborador.tipoDeColaborador.nomeCapitalizado}</td>
 						<td>#{colaborador.especialidade.descricao}</td>
 						<td>#{colaborador.registroNoCadastroRegionalOdontologico}</td>
 						<td>

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import br.com.infra.commons.constant.EnumAtivoInativo;
 import br.com.infra.commons.constant.EnumEspecialidadesOdontologicas;
@@ -85,11 +86,15 @@ public class ColaboradorMB extends GenericMB implements Serializable {
 		getFlashScoped().put("colaborador", colaborador);
 		
 		return "cadastro?faces-redirect=true";
-	} 
+	}
+	
+	public void alterarEspecialidade(AjaxBehaviorEvent event) {
+		colaborador.setEspecialidade(null);
+	}
 
 	public String salvarColaborador() {
 		String colaboradorJson = UtilConverter.objectToJson(colaborador);
-
+		
 		// TODO Colocar url em um arquivo ou classe de configuracao
 		String mensagem = UtilJson.postJson(
 				"http://localhost:8080/spring-jpa/rest/colaborador/setColaborador",
