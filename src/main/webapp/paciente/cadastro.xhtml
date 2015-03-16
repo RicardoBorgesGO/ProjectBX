@@ -54,7 +54,7 @@
 				<label class="col-sm-2 control-label">Sexo</label>
 				<div class="col-sm-2">
 					<h:selectOneMenu label="sexo" value="#{pacienteMB.paciente.sexo}">
-						<f:selectItem itemLabel="-- Selecione --" />
+						<f:selectItem itemLabel="-- Selecione --" noSelectionOption="true" />
 						<f:selectItems itemLabel="#{sexo.descricao}" itemValue="#{sexo}" value="#{pacienteMB.sexos}" var="sexo" />
 					</h:selectOneMenu>
 				</div>
@@ -64,7 +64,7 @@
 				<label class="col-sm-2 control-label">Estado Civil</label>
 				<div class="col-sm-2">
 					<h:selectOneMenu value="#{pacienteMB.paciente.estadoCivil}">
-						<f:selectItem itemLabel="-- Selecione --" />
+						<f:selectItem itemLabel="-- Selecione --" noSelectionOption="true" />
 						<f:selectItems itemLabel="#{estadoCivil.descricao}" itemValue="#{estadoCivil}" value="#{pacienteMB.estadosCivis}" var="estadoCivil" />
 					</h:selectOneMenu>
 				</div>
@@ -75,7 +75,7 @@
 				<div class="col-sm-2">
 					<h:selectOneMenu label="Colaborador" value="#{pacienteMB.paciente.colaborador}" required="true" styleClass="validation-required">
 						<f:converter converterId="br.com.medical.converter.ColaboradorConverter" />
-						<f:selectItem itemLabel="-- Selecione --" />
+						<f:selectItem itemLabel="-- Selecione --" itemValue="#{null}" value="#{null}" noSelectionOption="true" />
 						<f:selectItems itemLabel="#{colaborador.nome}" itemValue="#{colaborador}" value="#{pacienteMB.colaboradores}" var="colaborador" />
 					</h:selectOneMenu>
 				</div>

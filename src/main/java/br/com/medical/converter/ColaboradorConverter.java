@@ -12,13 +12,17 @@ public class ColaboradorConverter implements Converter {
 
 	@Override
 	public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String data) {
-		if (data != null) {
-			Colaborador colaborador = new Colaborador();
-			colaborador.setId(Long.parseLong(data));
-			
-			return colaborador;
+		try {
+			if (data != null) {
+				Colaborador colaborador = new Colaborador();
+				colaborador.setId(Long.parseLong(data));
+				
+				return colaborador;
+			}
+			return null;
+		} catch (NumberFormatException e) {
+			return null;
 		}
-		return null;
 	}
 
 	@Override
