@@ -36,7 +36,6 @@ $('.btn-validation').click(function() {
 		});
 		return false;
 	} else {
-		alert("Passou");
 		return true;
 	}
 });

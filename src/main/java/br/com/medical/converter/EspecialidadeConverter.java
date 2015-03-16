@@ -7,12 +7,13 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
+import br.com.infra.commons.entity.Especialidade;
 import br.com.infra.commons.entity.TipoDeColaborador;
 import br.com.medical.bean.ColaboradorMB;
 
-@ManagedBean(name = "tipoDeColaboradorConverterMB")
+@ManagedBean(name = "especialidadeConverterMB")
 @RequestScoped
-public class TipoDeColaboradorConverter implements Converter {
+public class EspecialidadeConverter implements Converter {
 
 	@ManagedProperty(value = "#{colaboradorMB}")
 	private ColaboradorMB colaboradorMB;
@@ -20,18 +21,20 @@ public class TipoDeColaboradorConverter implements Converter {
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 		try {
-			return getTipoDeColaborador(Long.parseLong(value));
+			return getEspecialidade(Long.parseLong(value));
 		} catch (NumberFormatException e) {
-			//TODO Achar uma forma melhor de retornar o valor corretamente
-			colaboradorMB.getColaborador().setTipoDeColaborador(new TipoDeColaborador());
 			return null;
 		}
 	}
 	
-	private TipoDeColaborador getTipoDeColaborador(Long id) {
+	private Especialidade getEspecialidade(Long id) {
 		for (TipoDeColaborador tipoDeColaborador : colaboradorMB.getTipoDeColaboradores()) {
-			if (id.equals(tipoDeColaborador.getId()))
-				return tipoDeColaborador;
+			if (!tipoDeColaborador.getEspecialidades().isEmpty()) {
+				for (Especialidade especialidade : tipoDeColaborador.getEspecialidades()) {
+					if (especialidade.getId().equals(id))
+						return especialidade;
+				}
+			}
 		}
 		return null;
 	}
@@ -41,8 +44,8 @@ public class TipoDeColaboradorConverter implements Converter {
 		if (value == null)
 			return null;
 		else {
-			TipoDeColaborador tipoDeColaborador = (TipoDeColaborador) value;
-			return tipoDeColaborador.getId().toString();
+			Especialidade especialidade = (Especialidade) value;
+			return especialidade.getId().toString();
 		}
 	}
 
