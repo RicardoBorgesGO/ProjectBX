@@ -35,9 +35,14 @@
 						<td>#{colaborador.especialidade.descricao}</td>
 						<td>#{colaborador.registroNoCadastroRegionalOdontologico}</td>
 						<td>
-							<h:commandLink styleClass="icon-list" action="#{colaboradorMB.atualizar}">
+							<h:commandLink title="Atualizar colaborador" styleClass="icon-list" action="#{colaboradorMB.atualizar}">
 								<f:setPropertyActionListener target="#{colaboradorMB.colaborador}" value="#{colaborador}" />
 								<i class="fa fa-pencil"></i>
+							</h:commandLink>
+							
+							<h:commandLink styleClass="icon-list" title="Acessar o calendário" action="#{colaboradorMB.acessarAgenda}">
+								<f:setPropertyActionListener target="#{colaboradorMB.colaborador}" value="#{colaborador}" />
+								<i class="fa fa-calendar"></i>
 							</h:commandLink>
 						</td>
 					</tr>

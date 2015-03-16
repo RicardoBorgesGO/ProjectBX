@@ -109,5 +109,10 @@ public class ColaboradorMB extends GenericMB implements Serializable {
 		getFlashScoped().put("colaborador", colaborador);
 		return "cadastro?faces-redirect=true";
 	}
+	
+	public String acessarAgenda() {
+		getFlashScoped().put("colaborador", colaborador);
+		return "agenda?faces-redirect=true&colaborador=" + colaborador.getId();
+	}
 
 }
