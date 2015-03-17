@@ -25,6 +25,15 @@ public class EventoMB implements Serializable {
 	public void init() {
 		evento = new Evento();
 	}
+	
+	public String adicionarEventoParaColaborador() {
+		String eventJson = UtilConverter.objectToJson(evento);
+		
+		//TODO Colocar url em um arquivo ou classe de configuracao
+		UtilJson.postJson("http://localhost:8080/spring-jpa/rest/evento/setEvento", eventJson);
+
+		return "agenda?faces-redirect=true&colaborador=" + evento.getColaborador().getId();
+	}
 
 	public String adicionarEvento() {
 		String eventJson = UtilConverter.objectToJson(evento);

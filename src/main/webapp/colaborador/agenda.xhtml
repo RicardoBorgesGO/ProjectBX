@@ -27,16 +27,13 @@
 			      </div>
 			      	<h:form prependId="false">
 					      <div class="modal-body">
-						        <p>One fine body...</p>
+<!-- 						        <p>One fine body...</p> -->
 						        
 						        <div class="form-group">
-<!-- 									<label for="paciente">Nome do paciente</label> -->
-<!-- 						        	<h:inputText id="paciente" styleClass="form-control search-paciente" value="# {eventoMB.evento.paciente.nome}" /> -->
+									<label for="paciente">Nome do paciente</label>
+						        	<h:inputText id="paciente" styleClass="form-control search-paciente" value="#{eventoMB.evento.paciente.nome}" />
 						        	
-<!-- 						        	<h:inputHidden id="pacienteID" value="# {eventoMB.evento.paciente.id}" /> -->
-						        	
-						        	<label for="colaborador">Nome do colaborador</label>
-						        	<h:inputText id="colaborador" styleClass="form-control search-colaborador" value="#{eventoMB.evento.colaborador.nome}" />
+						        	<h:inputHidden id="pacienteID" value="#{eventoMB.evento.paciente.id}" />
 						        	
 						        	<h:inputHidden id="colaboradorID" value="#{eventoMB.evento.colaborador.id}" />
 						        	
@@ -64,7 +61,7 @@
 					      </div>
 					      <div class="modal-footer">
 					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					        <h:commandButton class="btn btn-primary" value="Criar evento" action="#{eventoMB.adicionarEvento}" />
+					        <h:commandButton class="btn btn-primary" value="Criar evento" action="#{eventoMB.adicionarEventoParaColaborador}" />
 					      </div>
 			        </h:form>
 			    </div><!-- /.modal-content -->
@@ -104,6 +101,7 @@
 			<script type="text/javascript">
 			$(document).ready(function() {
 				var colaborador = getParameterByName('colaborador');
+				$('#colaboradorID').val(colaborador);
 				
 			    $('#calendar').fullCalendar({
 			    	header: {
@@ -114,8 +112,17 @@
 			    	editable: true,
 			    	selectable: true,
 			    	select: function(start, end) {
-			    		var dataInicial = moment(start).format("YYYY/MM/DD hh:mm");
-			    		var dataFinal = moment(end).format("YYYY/MM/DD hh:mm");
+// 			    		start = new Date(start);
+// 			    		end = new Date(end);
+			    		
+// 			    		start.setDate(start.getDate()+1);
+// 			    		start.setDate(start.getDate()+1);
+			    		
+			    		var dataInicial = moment(start).format("YYYY/MM/DD HH:mm");
+			    		var dataFinal = moment(end).format("YYYY/MM/DD HH:mm");
+			    		
+			    		alert(dataInicial);
+			    		alert(dataFinal);
 			    		
 			    		$('#dataDoEvento').val(dataInicial);
 			    		$('#dataFinalDoEvento').val(dataFinal);

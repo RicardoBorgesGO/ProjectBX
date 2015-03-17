@@ -1,6 +1,6 @@
-var imported = document.createElement('script');
-imported.src = '/sgo/javax.faces.resource/jquery.bootstrap-growl.min.js.xhtml?ln=js';
-document.head.appendChild(imported);
+//var imported = document.createElement('script');
+//imported.src = '/sgo/javax.faces.resource/jquery.bootstrap-growl.min.js.xhtml?ln=js';
+//document.head.appendChild(imported);
 
 
 /**
