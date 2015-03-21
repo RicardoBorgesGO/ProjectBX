@@ -6,33 +6,28 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 
 public class GenericMB {
-	
+
 	protected void addMensagemSucesso(String message) {
-		FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, message, null);
-		facesMessage.setDetail("");
-		
-		FacesContext.getCurrentInstance().addMessage(null,
-				facesMessage);
+		addMensagemSucesso(message, "");
 	}
-	
+
 	protected void addMensagemSucesso(String message, String details) {
-		FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, message, null);
+		FacesMessage facesMessage = new FacesMessage(
+				FacesMessage.SEVERITY_INFO, message, null);
 		facesMessage.setDetail(details);
-		
+
 		FacesContext.getCurrentInstance().addMessage(null, facesMessage);
 	}
 
 	protected void addMensagemErro(String message) {
-		FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null);
-		facesMessage.setDetail("");
-		
-		FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+		addMensagemErro(message, "");
 	}
-	
+
 	protected void addMensagemErro(String message, String details) {
-		FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null);
+		FacesMessage facesMessage = new FacesMessage(
+				FacesMessage.SEVERITY_ERROR, message, null);
 		facesMessage.setDetail(details);
-		
+
 		FacesContext.getCurrentInstance().addMessage(null, facesMessage);
 	}
 
@@ -43,7 +38,7 @@ public class GenericMB {
 	protected ExternalContext getExternalContext() {
 		return (ExternalContext) getFacesContext().getExternalContext();
 	}
-	
+
 	protected Flash getFlashScoped() {
 		return getExternalContext().getFlash();
 	}
