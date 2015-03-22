@@ -7,6 +7,10 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 
 	<ui:composition template="/WEB-INF/common/template.xhtml">
+		
+		<ui:param name="titulo_pagina" value="Agenda do colaborador #{eventoMB.colaborador.nome}" />
+		<ui:param name="subtitulo_pagina" value="Pequena descrição da funcionalidade" />
+		
 		<ui:define name="conteudo">
 			<h:outputStylesheet library="css" name="autocomplete.css" />
 			<h:outputScript library="js" name="typeahead.bundle.js" />
@@ -27,8 +31,6 @@
 			      </div>
 			      	<h:form prependId="false">
 					      <div class="modal-body">
-<!-- 						        <p>One fine body...</p> -->
-						        
 						        <div class="form-group">
 									<label for="paciente">Nome do paciente</label>
 						        	<h:inputText id="paciente" styleClass="form-control search-paciente" value="#{eventoMB.evento.paciente.nome}" />
@@ -120,9 +122,6 @@
 			    		
 			    		var dataInicial = moment(start).format("YYYY/MM/DD HH:mm");
 			    		var dataFinal = moment(end).format("YYYY/MM/DD HH:mm");
-			    		
-			    		alert(dataInicial);
-			    		alert(dataFinal);
 			    		
 			    		$('#dataDoEvento').val(dataInicial);
 			    		$('#dataFinalDoEvento').val(dataFinal);

@@ -6,13 +6,14 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import br.com.infra.commons.entity.Colaborador;
 import br.com.infra.commons.entity.Evento;
 import br.com.infra.commons.util.UtilConverter;
 import br.com.infra.commons.util.UtilJson;
 
 @ManagedBean
 @ViewScoped
-public class EventoMB implements Serializable {
+public class EventoMB extends GenericMB implements Serializable {
 
 	/**
 	 * 
@@ -21,8 +22,11 @@ public class EventoMB implements Serializable {
 	
 	private Evento evento;
 	
+	private Colaborador colaborador;
+	
 	@PostConstruct
 	public void init() {
+		colaborador = (Colaborador) getFlashScoped().get("colaborador");
 		evento = new Evento();
 	}
 	
@@ -59,6 +63,14 @@ public class EventoMB implements Serializable {
 
 	public void setEvento(Evento evento) {
 		this.evento = evento;
+	}
+
+	public Colaborador getColaborador() {
+		return colaborador;
+	}
+
+	public void setColaborador(Colaborador colaborador) {
+		this.colaborador = colaborador;
 	}
 
 }
