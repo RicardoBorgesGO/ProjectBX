@@ -34,7 +34,7 @@ public class EventoMB extends GenericMB implements Serializable {
 		String eventJson = UtilConverter.objectToJson(evento);
 		
 		//TODO Colocar url em um arquivo ou classe de configuracao
-		UtilJson.postJson("http://localhost:8080/spring-jpa/rest/evento/setEvento", eventJson);
+		UtilJson.postJson(getInitialParameter("url-service") + "/rest/evento/setEvento", eventJson);
 
 		return "agenda?faces-redirect=true&colaborador=" + evento.getColaborador().getId();
 	}
@@ -43,7 +43,7 @@ public class EventoMB extends GenericMB implements Serializable {
 		String eventJson = UtilConverter.objectToJson(evento);
 		
 		//TODO Colocar url em um arquivo ou classe de configuracao
-		UtilJson.postJson("http://localhost:8080/spring-jpa/rest/evento/setEvento", eventJson);
+		UtilJson.postJson(getInitialParameter("url-service") + "/rest/evento/setEvento", eventJson);
 
 		return "";
 	}
@@ -52,7 +52,7 @@ public class EventoMB extends GenericMB implements Serializable {
 		String eventJson = UtilConverter.objectToJson(evento);
 		
 		//TODO Colocar url em um arquivo ou classe de configuracao
-		UtilJson.postJson("http://localhost:8080/spring-jpa/rest/evento/deleteEvento", eventJson);
+		UtilJson.postJson(getInitialParameter("url-service") + "/rest/evento/deleteEvento", eventJson);
 		
 		return "";
 	}

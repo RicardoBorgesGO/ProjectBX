@@ -68,7 +68,7 @@ public class PacienteMB extends GenericMB implements Serializable {
 		if (pacientes == null)
 			pacientes = UtilJson
 					.getAllObjectJson(
-							"http://localhost:8080/spring-jpa/rest/paciente/getPacientes",
+							getInitialParameter("url-service") + "/rest/paciente/getPacientes",
 							new TypeToken<ArrayList<Paciente>>() {
 							}.getType());
 		return pacientes;
@@ -78,7 +78,7 @@ public class PacienteMB extends GenericMB implements Serializable {
 		if (colaboradores == null)
 			colaboradores = UtilJson
 					.getAllObjectJson(
-							"http://localhost:8080/spring-jpa/rest/colaborador/getColaboradores",
+							getInitialParameter("url-service") + "/rest/colaborador/getColaboradores",
 							new TypeToken<ArrayList<Colaborador>>() {
 							}.getType());
 		return colaboradores;
@@ -89,7 +89,7 @@ public class PacienteMB extends GenericMB implements Serializable {
 
 		// TODO Colocar url em um arquivo ou classe de configuracao
 		String mensagem = UtilJson.postJson(
-				"http://localhost:8080/spring-jpa/rest/paciente/setPaciente",
+				getInitialParameter("url-service") + "/rest/paciente/setPaciente",
 				pacienteJson);
 
 		addMensagemSucesso(mensagem);

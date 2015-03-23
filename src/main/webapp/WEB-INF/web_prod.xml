@@ -13,13 +13,13 @@
 	<context-param>
 		<description>Url de logout</description>
 		<param-name>url-logout</param-name>
-		<param-value>http://localhost:8080/stateless-session/auth/logout?url=http://localhost:8080/sgo/colaborador/index.xhtml</param-value>
+		<param-value>http://stateless-session.herokuapp.com/auth/logout?url=http://dry-wildwood-1099.herokuapp.com/colaborador/index.xhtml</param-value>
 	</context-param>
 	
 	<context-param>
 		<description>Url do serviço</description>
 		<param-name>url-service</param-name>
-		<param-value>http://localhost:8080/spring-jpa</param-value>
+		<param-value>http://lit-oasis-1084.herokuapp.com</param-value>
 	</context-param>
 	
 	<servlet-mapping>
@@ -36,11 +36,11 @@
 	    </filter-class>
 	    <init-param>
 	        <param-name>url-redirect</param-name>
-	        <param-value>http://localhost:8080/sgo/colaborador/index.xhtml</param-value>
+	        <param-value>http://dry-wildwood-1099.herokuapp.com/colaborador/index.xhtml</param-value>
 	    </init-param>
 	     <init-param>
 	        <param-name>url-authentication</param-name>
-	        <param-value>http://localhost:8080/stateless-session/auth</param-value>
+	        <param-value>http://stateless-session.herokuapp.com/auth</param-value>
 	    </init-param>
 	</filter>
 	<filter-mapping>

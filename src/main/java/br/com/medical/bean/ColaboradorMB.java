@@ -51,13 +51,13 @@ public class ColaboradorMB extends GenericMB implements Serializable {
 	
 	public List<TipoDeColaborador> getTipoDeColaboradores() {
 		if (tipoDeColaboradores == null)
-			tipoDeColaboradores = UtilJson.getAllObjectJson("http://localhost:8080/spring-jpa/rest/colaborador/getTiposDeColaboradores", new TypeToken<ArrayList<TipoDeColaborador>>() {}.getType());
+			tipoDeColaboradores = UtilJson.getAllObjectJson(getInitialParameter("url-service") + "/rest/colaborador/getTiposDeColaboradores", new TypeToken<ArrayList<TipoDeColaborador>>() {}.getType());
 		return tipoDeColaboradores;
 	}
 
 	public List<Colaborador> getColaboradores() {
 		if (colaboradores == null)
-			colaboradores = UtilJson.getAllObjectJson("http://localhost:8080/spring-jpa/rest/colaborador/getColaboradores", new TypeToken<ArrayList<Colaborador>>() {}.getType());
+			colaboradores = UtilJson.getAllObjectJson(getInitialParameter("url-service") + "/rest/colaborador/getColaboradores", new TypeToken<ArrayList<Colaborador>>() {}.getType());
 		return colaboradores;
 	}
 
@@ -97,7 +97,7 @@ public class ColaboradorMB extends GenericMB implements Serializable {
 		
 		// TODO Colocar url em um arquivo ou classe de configuracao
 		String mensagem = UtilJson.postJson(
-				"http://localhost:8080/spring-jpa/rest/colaborador/setColaborador",
+				getInitialParameter("url-service") + "/rest/colaborador/setColaborador",
 				colaboradorJson);
 		
 		addMensagemSucesso(mensagem);

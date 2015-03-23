@@ -28,7 +28,7 @@ public class LoginMB extends GenericMB implements Serializable {
 
 		// TODO Colocar url em um arquivo ou classe de configuracao
 		String message = UtilJson.postJson(
-				"http://localhost:8080/spring-jpa/rest/usuario/realizarLogin",
+				getInitialParameter("url-service") + "/rest/usuario/realizarLogin",
 				usuarioJson);
 
 		addMensagemSucesso(message);

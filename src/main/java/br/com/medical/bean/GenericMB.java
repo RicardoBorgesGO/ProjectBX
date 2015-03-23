@@ -30,6 +30,10 @@ public class GenericMB {
 
 		FacesContext.getCurrentInstance().addMessage(null, facesMessage);
 	}
+	
+	protected String getInitialParameter(String data) {
+		return getExternalContext().getInitParameter(data);
+	}
 
 	protected FacesContext getFacesContext() {
 		return FacesContext.getCurrentInstance();
