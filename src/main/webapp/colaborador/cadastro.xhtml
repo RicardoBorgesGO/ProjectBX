@@ -34,13 +34,22 @@
 			</div>
 			
 			<h:panelGroup id="especialidade-block">
-				<h:panelGroup layout="block" styleClass="form-group required" rendered="#{colaboradorMB.colaborador.tipoDeColaborador.especialidades != null and not empty colaboradorMB.colaborador.tipoDeColaborador.especialidades}">
-					<label for="especialidade" class="col-sm-2 control-label">Especialidade</label>
-					<div class="col-sm-4">
-						<h:selectOneMenu label="Especialidade" styleClass="validation-required" value="#{colaboradorMB.colaborador.especialidade}" required="true" converter="#{especialidadeConverterMB}">
-							<f:selectItem itemLabel="-- Selecione --" noSelectionOption="true" />
-							<f:selectItems value="#{colaboradorMB.colaborador.tipoDeColaborador.especialidades}" var="especialidade" itemLabel="#{especialidade.descricao}" itemValue="#{especialidade}" />
-						</h:selectOneMenu>
+				<h:panelGroup layout="block" styleClass="required" rendered="#{colaboradorMB.colaborador.tipoDeColaborador.especialidades != null and not empty colaboradorMB.colaborador.tipoDeColaborador.especialidades}">
+					<div class="form-group">
+						<label for="especialidade" class="col-sm-2 control-label">Especialidade</label>
+						<div class="col-sm-4">
+							<h:selectOneMenu label="Especialidade" styleClass="validation-required" value="#{colaboradorMB.colaborador.especialidade}" required="true" converter="#{especialidadeConverterMB}">
+								<f:selectItem itemLabel="-- Selecione --" noSelectionOption="true" />
+								<f:selectItems value="#{colaboradorMB.colaborador.tipoDeColaborador.especialidades}" var="especialidade" itemLabel="#{especialidade.descricao}" itemValue="#{especialidade}" />
+							</h:selectOneMenu>
+						</div>
+					</div>
+					
+					<div class="form-group required">
+						<label for="cro" class="col-sm-2 control-label">Registro</label>
+						<div class="col-sm-2">
+							<h:inputText required="true" id="cro" styleClass="form-control validation-required" value="#{colaboradorMB.colaborador.registroNoCadastroRegionalOdontologico}" p:placeholder="CRO" />
+						</div>
 					</div>
 				</h:panelGroup>
 			</h:panelGroup>
@@ -65,13 +74,6 @@
 				<label for="telefone" class="col-sm-2 control-label">Telefone</label>
 				<div class="col-sm-2">
 					<h:inputText required="true" id="telefone" styleClass="form-control validation-required" value="#{colaboradorMB.colaborador.telefone}" p:placeholder="(__) ____-____" />
-				</div>
-			</div>
-			
-			<div class="form-group required">
-				<label for="cro" class="col-sm-2 control-label">CRO</label>
-				<div class="col-sm-2">
-					<h:inputText required="true" id="cro" styleClass="form-control validation-required" value="#{colaboradorMB.colaborador.registroNoCadastroRegionalOdontologico}" p:placeholder="CRO" />
 				</div>
 			</div>
 			
