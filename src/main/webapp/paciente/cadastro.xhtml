@@ -28,6 +28,20 @@
 			</div>
 			
 			<div class="form-group required">
+				<label class="col-sm-2 control-label" for="cpf">CPF</label>
+				<div class="col-sm-2">
+					<h:inputText id="cpf" styleClass="form-control validation-required" p:placeholder="000.000.000-00" required="true" value="#{pacienteMB.paciente.cpf}" />
+				</div>
+			</div>
+			
+			<div class="form-group required">
+				<label class="col-sm-2 control-label" for="rg">RG</label>
+				<div class="col-sm-2">
+					<h:inputText id="rg" styleClass="form-control validation-required" p:placeholder="00..." required="true" value="#{pacienteMB.paciente.rg}" />
+				</div>
+			</div>
+			
+			<div class="form-group required">
 				<label class="col-sm-2 control-label" for="dataNascimento">Data de nascimento</label>
 				<div class="col-sm-2">
 					<h:inputText required="true" id="dataNascimento" styleClass="form-control validation-required" p:placeholder="__/__/____" value="#{pacienteMB.paciente.dataDeNascimento}">
@@ -37,46 +51,25 @@
 			</div>
 			
 			<div class="form-group required">
-				<label for="email" class="col-sm-2 control-label">Email</label>
-				<div class="col-sm-4">
-					<h:inputText required="true" id="email" styleClass="form-control validation-required" value="#{pacienteMB.paciente.email}" p:placeholder="Email" />
+				<label for="telefone" class="col-sm-2 control-label">Telefone fixo:</label>
+				<div class="col-sm-2">
+ 					<h:inputText required="true" id="telefone" styleClass="form-control validation-required" p:placeholder="(__) ____-____" value="#{pacienteMB.paciente.telefone}" />
 				</div>
 			</div>
 			
 			<div class="form-group required">
-				<label for="telefone" class="col-sm-2 control-label">Telefone:</label>
+				<label for="telefoneCelular" class="col-sm-2 control-label">Telefone celular:</label>
 				<div class="col-sm-2">
-					<h:inputText required="true" id="telefone" styleClass="form-control validation-required" p:placeholder="(__) ____-____" value="#{pacienteMB.paciente.telefone}" />
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Sexo</label>
-				<div class="col-sm-2">
-					<h:selectOneMenu label="sexo" value="#{pacienteMB.paciente.sexo}">
-						<f:selectItem itemLabel="-- Selecione --" noSelectionOption="true" />
-						<f:selectItems itemLabel="#{sexo.descricao}" itemValue="#{sexo}" value="#{pacienteMB.sexos}" var="sexo" />
-					</h:selectOneMenu>
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Estado Civil</label>
-				<div class="col-sm-2">
-					<h:selectOneMenu value="#{pacienteMB.paciente.estadoCivil}">
-						<f:selectItem itemLabel="-- Selecione --" noSelectionOption="true" />
-						<f:selectItems itemLabel="#{estadoCivil.descricao}" itemValue="#{estadoCivil}" value="#{pacienteMB.estadosCivis}" var="estadoCivil" />
-					</h:selectOneMenu>
+					<h:inputText required="true" id="telefoneCelular" styleClass="form-control validation-required" p:placeholder="(__) ____-____" value="#{pacienteMB.paciente.telefoneCelular}" />
 				</div>
 			</div>
 			
 			<div class="form-group required">
-				<label class="col-sm-2 control-label" for="exampleInputEmail1">Colaborador</label>
+				<label for="operadoraCelular" class="col-sm-2 control-label">Operadora celular:</label>
 				<div class="col-sm-2">
-					<h:selectOneMenu label="Colaborador" value="#{pacienteMB.paciente.colaborador}" required="true" styleClass="validation-required">
-						<f:converter converterId="br.com.medical.converter.ColaboradorConverter" />
-						<f:selectItem itemLabel="-- Selecione --" itemValue="#{null}" value="#{null}" noSelectionOption="true" />
-						<f:selectItems itemLabel="#{colaborador.nome}" itemValue="#{colaborador}" value="#{pacienteMB.colaboradores}" var="colaborador" />
+					<h:selectOneMenu id="operadoraCelular" styleClass="validation-required" value="#{pacienteMB.paciente.operadoraCelular}">
+						<f:selectItem noSelectionOption="true" itemLabel="-- Selecione --" />
+						<f:selectItems var="operadoraDeCelular" value="#{pacienteMB.operadorasDeCelular}" itemLabel="#{operadoraDeCelular.descricao}" itemValue="#{operadoraDeCelular}" />
 					</h:selectOneMenu>
 				</div>
 			</div>
@@ -91,16 +84,21 @@
 			<div class="form-group required">
 				<label for="endereco" class="col-sm-2 control-label">Logradouro</label>
 				<div class="col-sm-4">
-					<h:inputText rendered="true" id="endereco" styleClass="form-control validation-required" value="#{pacienteMB.paciente.endereco.logradouro}" p:placeholder="Rua A" />
+					<h:inputText required="true" id="endereco" styleClass="form-control validation-required" value="#{pacienteMB.paciente.endereco.logradouro}" p:placeholder="Rua A" />
 				</div>
 				
 				<label for="bairro" class="col-sm-1 control-label">Bairro</label>
 				<div class="col-sm-3">
-					<h:inputText rendered="true" id="bairro" styleClass="form-control validation-required" value="#{pacienteMB.paciente.endereco.bairro}" p:placeholder="Bairro central" />
+					<h:inputText required="true" id="bairro" styleClass="form-control validation-required" value="#{pacienteMB.paciente.endereco.bairro}" p:placeholder="Bairro central" />
 				</div>
 			</div>
 			
 			<div class="form-group">
+				<label for="numero" class="col-sm-2 control-label">Número</label>
+				<div class="col-sm-4">
+					<h:inputText id="numero" styleClass="form-control" value="#{pacienteMB.paciente.endereco.numero}" p:placeholder="0" />
+				</div>
+			
 				<label for="complemento" class="col-sm-2 control-label">Complemento</label>
 				<div class="col-sm-4">
 					<h:inputText id="complemento" styleClass="form-control" value="#{pacienteMB.paciente.endereco.complemento}" p:placeholder="Qd. 123 L. 2" />
@@ -110,12 +108,12 @@
 			<div class="form-group required">
 				<label for="cidade" class="col-sm-2 control-label">Cidade</label>
 				<div class="col-sm-2">
-					<h:inputText rendered="true" id="cidade" styleClass="form-control validation-required" value="#{pacienteMB.paciente.endereco.cidade}" p:placeholder="Goiânia" />
+					<h:inputText required="true" id="cidade" styleClass="form-control validation-required" value="#{pacienteMB.paciente.endereco.cidade}" p:placeholder="Goiânia" />
 				</div>
 				
 				<label for="estado" class="col-sm-1 control-label">UF</label>
 				<div class="col-sm-2">
-					<h:inputText rendered="true" id="estado" styleClass="form-control validation-required" value="#{pacienteMB.paciente.endereco.estado}" p:placeholder="Goiás" />
+					<h:inputText required="true" id="estado" styleClass="form-control validation-required" value="#{pacienteMB.paciente.endereco.estado}" p:placeholder="Goiás" />
 				</div>
 			</div>
 			
@@ -131,6 +129,7 @@
 			$("#telefone").mask("(99) 9999-9999");
 			
 			$("#cep").mask("99999-999");
+			$("#cpf").mask("999.999.999-99");
 		</script>
 		
 		<script type="text/javascript">

@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import br.com.infra.commons.constant.EnumEstadoCivil;
+import br.com.infra.commons.constant.EnumOperadoraCelular;
 import br.com.infra.commons.constant.EnumSexo;
 import br.com.infra.commons.entity.Colaborador;
 import br.com.infra.commons.entity.Paciente;
@@ -53,6 +54,14 @@ public class PacienteMB extends GenericMB implements Serializable {
 	 */
 	public EnumSexo[] getSexos() {
 		return EnumSexo.values();
+	}
+	
+	/**
+	 * Retorna operadores de celular
+	 * @return
+	 */
+	public EnumOperadoraCelular[]  getOperadorasDeCelular() {
+		return EnumOperadoraCelular.values();
 	}
 
 	/**
