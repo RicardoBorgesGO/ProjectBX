@@ -16,7 +16,7 @@ import br.com.infra.commons.entity.Colaborador;
 import br.com.infra.commons.entity.TipoDeColaborador;
 import br.com.infra.commons.util.UtilConverter;
 import br.com.infra.commons.util.UtilJson;
-import br.com.medical.proxy.client.IClientMedicalProxy;
+import br.com.medical.dao.IColaboradorDAO;
 
 @ViewScoped
 @ManagedBean
@@ -34,7 +34,7 @@ public class ColaboradorMB extends GenericMB implements Serializable {
 	private List<TipoDeColaborador> tipoDeColaboradores;
 	
 	@Inject
-	private IClientMedicalProxy clientProxy;
+	private IColaboradorDAO colaboradorDAO;
 
 	public Colaborador getColaborador() {
 		Colaborador colaboradorThis = (Colaborador) getFlashScoped().get("colaborador");
@@ -54,7 +54,7 @@ public class ColaboradorMB extends GenericMB implements Serializable {
 	public List<TipoDeColaborador> getTipoDeColaboradores() {
 		if (tipoDeColaboradores == null) {
 //			tipoDeColaboradores = UtilJson.getAllObjectJson(getInitialParameter("url-service") + "/rest/colaborador/getTiposDeColaboradores", new TypeToken<ArrayList<TipoDeColaborador>>() {}.getType());
-			tipoDeColaboradores = clientProxy.getTiposDeColaboradores();
+			tipoDeColaboradores = colaboradorDAO.getTiposDeColaboradores();
 		}
 		return tipoDeColaboradores;
 	}
@@ -62,7 +62,7 @@ public class ColaboradorMB extends GenericMB implements Serializable {
 	public List<Colaborador> getColaboradores() {
 		if (colaboradores == null) {
 //			colaboradores = UtilJson.getAllObjectJson(getInitialParameter("url-service") + "/rest/colaborador/getColaboradores", new TypeToken<ArrayList<Colaborador>>() {}.getType());
-			colaboradores = clientProxy.getColaboradores();
+			colaboradores = colaboradorDAO.getColaboradores();
 		}
 		return colaboradores;
 	}
