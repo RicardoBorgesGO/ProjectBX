@@ -1,12 +1,12 @@
 package br.com.medical.bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.AjaxBehaviorEvent;
+import javax.inject.Inject;
 
 import br.com.infra.commons.constant.EnumAtivoInativo;
 import br.com.infra.commons.constant.EnumEspecialidadesOdontologicas;
@@ -16,8 +16,7 @@ import br.com.infra.commons.entity.Colaborador;
 import br.com.infra.commons.entity.TipoDeColaborador;
 import br.com.infra.commons.util.UtilConverter;
 import br.com.infra.commons.util.UtilJson;
-
-import com.google.gson.reflect.TypeToken;
+import br.com.medical.proxy.client.IClientMedicalProxy;
 
 @ViewScoped
 @ManagedBean
@@ -33,6 +32,9 @@ public class ColaboradorMB extends GenericMB implements Serializable {
 	private List<Colaborador> colaboradores;
 	
 	private List<TipoDeColaborador> tipoDeColaboradores;
+	
+	@Inject
+	private IClientMedicalProxy clientProxy;
 
 	public Colaborador getColaborador() {
 		Colaborador colaboradorThis = (Colaborador) getFlashScoped().get("colaborador");
@@ -50,14 +52,18 @@ public class ColaboradorMB extends GenericMB implements Serializable {
 	}
 	
 	public List<TipoDeColaborador> getTipoDeColaboradores() {
-		if (tipoDeColaboradores == null)
-			tipoDeColaboradores = UtilJson.getAllObjectJson(getInitialParameter("url-service") + "/rest/colaborador/getTiposDeColaboradores", new TypeToken<ArrayList<TipoDeColaborador>>() {}.getType());
+		if (tipoDeColaboradores == null) {
+//			tipoDeColaboradores = UtilJson.getAllObjectJson(getInitialParameter("url-service") + "/rest/colaborador/getTiposDeColaboradores", new TypeToken<ArrayList<TipoDeColaborador>>() {}.getType());
+			tipoDeColaboradores = clientProxy.getTiposDeColaboradores();
+		}
 		return tipoDeColaboradores;
 	}
 
 	public List<Colaborador> getColaboradores() {
-		if (colaboradores == null)
-			colaboradores = UtilJson.getAllObjectJson(getInitialParameter("url-service") + "/rest/colaborador/getColaboradores", new TypeToken<ArrayList<Colaborador>>() {}.getType());
+		if (colaboradores == null) {
+//			colaboradores = UtilJson.getAllObjectJson(getInitialParameter("url-service") + "/rest/colaborador/getColaboradores", new TypeToken<ArrayList<Colaborador>>() {}.getType());
+			colaboradores = clientProxy.getColaboradores();
+		}
 		return colaboradores;
 	}
 

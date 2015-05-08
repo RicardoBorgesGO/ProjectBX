@@ -27,17 +27,24 @@
 	<dependencies>
 
 		<dependency>
+			<groupId>br.com.broker</groupId>
+			<artifactId>BrokerBX</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
 			<groupId>br.com.medical</groupId>
 			<artifactId>sgo-commons</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>br.com.auth.client</groupId>
 			<artifactId>stateless-session-client</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
+	<!-- Retirar apos migrar tudo -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>

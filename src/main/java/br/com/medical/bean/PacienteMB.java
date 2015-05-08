@@ -1,11 +1,11 @@
 package br.com.medical.bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.inject.Inject;
 
 import br.com.infra.commons.constant.EnumEstadoCivil;
 import br.com.infra.commons.constant.EnumOperadoraCelular;
@@ -14,8 +14,7 @@ import br.com.infra.commons.entity.Colaborador;
 import br.com.infra.commons.entity.Paciente;
 import br.com.infra.commons.util.UtilConverter;
 import br.com.infra.commons.util.UtilJson;
-
-import com.google.gson.reflect.TypeToken;
+import br.com.medical.proxy.client.IClientMedicalProxy;
 
 @ManagedBean
 @ViewScoped
@@ -31,6 +30,9 @@ public class PacienteMB extends GenericMB implements Serializable {
 	private List<Paciente> pacientes;
 
 	private List<Colaborador> colaboradores;
+	
+	@Inject
+	private IClientMedicalProxy clientProxy;
 
 	public Paciente getPaciente() {
 		Paciente pacienteThis = (Paciente) getFlashScoped().get("paciente");
@@ -75,21 +77,13 @@ public class PacienteMB extends GenericMB implements Serializable {
 
 	public List<Paciente> getPacientes() {
 		if (pacientes == null)
-			pacientes = UtilJson
-					.getAllObjectJson(
-							getInitialParameter("url-service") + "/rest/paciente/getPacientes",
-							new TypeToken<ArrayList<Paciente>>() {
-							}.getType());
+			pacientes = clientProxy.getPacientes();
 		return pacientes;
 	}
 
 	public List<Colaborador> getColaboradores() {
 		if (colaboradores == null)
-			colaboradores = UtilJson
-					.getAllObjectJson(
-							getInitialParameter("url-service") + "/rest/colaborador/getColaboradores",
-							new TypeToken<ArrayList<Colaborador>>() {
-							}.getType());
+			colaboradores = clientProxy.getColaboradores();
 		return colaboradores;
 	}
 
