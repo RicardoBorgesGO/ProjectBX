@@ -1,18 +1,23 @@
 package br.com.medical.dao.impl;
 
+import java.io.Serializable;
 import java.util.List;
-
-import javax.inject.Inject;
 
 import br.com.infra.commons.entity.Colaborador;
 import br.com.infra.commons.entity.TipoDeColaborador;
 import br.com.medical.dao.IColaboradorDAO;
+import br.com.medical.proxy.client.ClientMedicalProxy;
 import br.com.medical.proxy.client.IClientMedicalProxy;
 
-public class ColaboradorDAOImpl implements IColaboradorDAO {
+public class ColaboradorDAOImpl implements Serializable, IColaboradorDAO {
 
-	@Inject
-	private IClientMedicalProxy clientProxy;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1399942256627972660L;
+	
+	//TODO Colocar Inject
+	private IClientMedicalProxy clientProxy = new ClientMedicalProxy();
 	
 	@Override
 	public List<Colaborador> getColaboradores() {

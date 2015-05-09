@@ -3,10 +3,10 @@ package br.com.medical.bean;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.AjaxBehaviorEvent;
-import javax.inject.Inject;
 
 import br.com.infra.commons.constant.EnumAtivoInativo;
 import br.com.infra.commons.constant.EnumEspecialidadesOdontologicas;
@@ -17,6 +17,7 @@ import br.com.infra.commons.entity.TipoDeColaborador;
 import br.com.infra.commons.util.UtilConverter;
 import br.com.infra.commons.util.UtilJson;
 import br.com.medical.dao.IColaboradorDAO;
+import br.com.medical.dao.impl.ColaboradorDAOImpl;
 
 @ViewScoped
 @ManagedBean
@@ -33,8 +34,14 @@ public class ColaboradorMB extends GenericMB implements Serializable {
 	
 	private List<TipoDeColaborador> tipoDeColaboradores;
 	
-	@Inject
+//	@Inject
 	private IColaboradorDAO colaboradorDAO;
+	
+	@PostConstruct
+	public void init() {
+		//TODO Injetar em vez de criar instancia na mao
+		colaboradorDAO = new ColaboradorDAOImpl();
+	}
 
 	public Colaborador getColaborador() {
 		Colaborador colaboradorThis = (Colaborador) getFlashScoped().get("colaborador");
