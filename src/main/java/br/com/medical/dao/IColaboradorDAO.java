@@ -10,4 +10,6 @@ public interface IColaboradorDAO {
 	public List<Colaborador> getColaboradores();
 	
 	public List<TipoDeColaborador> getTiposDeColaboradores();
+	
+	public void salvarColaborador(Colaborador colaborador);
 }

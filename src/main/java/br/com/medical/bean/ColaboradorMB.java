@@ -14,8 +14,6 @@ import br.com.infra.commons.constant.EnumEstadoCivil;
 import br.com.infra.commons.constant.EnumSexo;
 import br.com.infra.commons.entity.Colaborador;
 import br.com.infra.commons.entity.TipoDeColaborador;
-import br.com.infra.commons.util.UtilConverter;
-import br.com.infra.commons.util.UtilJson;
 import br.com.medical.dao.IColaboradorDAO;
 import br.com.medical.dao.impl.ColaboradorDAOImpl;
 
@@ -106,14 +104,17 @@ public class ColaboradorMB extends GenericMB implements Serializable {
 	}
 
 	public String salvarColaborador() {
-		String colaboradorJson = UtilConverter.objectToJson(colaborador);
+//		String colaboradorJson = UtilConverter.objectToJson(colaborador);
 		
 		// TODO Colocar url em um arquivo ou classe de configuracao
-		String mensagem = UtilJson.postJson(
-				getInitialParameter("url-service") + "/rest/colaborador/setColaborador",
-				colaboradorJson);
+//		String mensagem = UtilJson.postJson(
+//				getInitialParameter("url-service") + "/rest/colaborador/setColaborador",
+//				colaboradorJson);
 		
-		addMensagemSucesso(mensagem);
+//		addMensagemSucesso(mensagem);
+		
+		colaboradorDAO.salvarColaborador(colaborador);
+		addMensagemSucesso("Salvo com sucesso");
 		
 		return "index?faces-redirect=true";
 	}
